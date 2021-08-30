@@ -1,98 +1,26 @@
 <?php 
-    require("connection.php");
+    include "../connection.php";
     session_start();
 
-    $query = "SELECT * FROM registered_users";
+    if(!isset($_SESSION['UID'])) {
+        header("location: index.php");
+    }
 
+    $time = time();
+
+    $query = "SELECT * FROM registered_users";
     $result = $con->query($query);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- All meta tag -->
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include "./includes/header.php" ?>
 
-        <title>User - Login Page</title>
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="styles.css">
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-        <script src="https://kit.fontawesome.com/970b4cc451.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class="d-flex justify-content-center">
-            <h2 class="">DrHologram</h2>
-        </div>
-        <!-- Header start -->
-        <header class="container">    
-            <!-- Nav start -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <!-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown link
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li> -->
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- Nav end -->
-
-            <!-- <button class='btn btn-secondary' action='register.php'>REGISTER</button> -->
-            <!-- <a class='btn btn-secondary' data-bs-toggle='modal' href='http://localhost:8000/LoginSystem/register.php' role='button'>REGISTER</a> -->
-            <?php 
-                if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true) {
-                    echo"
-                        <div>
-                            WELCOME, $_SESSION[username]! - <a class='btn btn-danger' href='logout.php' role='button'>LOGOUT</a>
-                        </div>
-                    ";
-                }
-                else {
-                    echo"
-                    <!-- login button start -->
-                    <div class='sign-in-up'>
-                        <!-- <button type='button' class='btn btn-secondary'>LOGIN</button> -->
-                        <a class='btn btn-secondary' data-bs-toggle='modal' href='#exampleModalToggle' role='button'>LOGIN</a>
-                        <form action='register.php'>
-                            <button class='btn btn-secondary'>REGISTER</button>
-                        </form>
-                    </div>
-                    <!-- login button end -->
-                    ";
-                }
-            ?>
-        </header>
+    <?php include "./includes/navbar.php" ?>
 
         <div class="container">
-            <h1 class="text-center m-5">Admin Page</h1>
+            <h1 class="text-center m-5">USER DETAIL PAGE</h1>
 
             <a class='btn btn-secondary' data-bs-toggle='modal' href='#exampleModalToggle' role='button'> + Add User Detail</a>
             <!-- Modal to insert/update/delete the data start -->
@@ -104,7 +32,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="admin_process.php">
+                            <form method="POST" action="owner_process.php">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingInput0" placeholder="First Name" name="firstname" required>
                                     <label for="floatingInput0">First Name</label>
@@ -174,8 +102,8 @@
             </div>
             <!-- Modal to insert/update/delete the data end -->
 
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
+            <div class="table-responsive mt-5 mb-5 ">
+                <table id="example" class="table table-striped table-hover shadow-lg mt-3 mb-3">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -183,42 +111,67 @@
                             <th>Last Name</th>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Password</th>
-                            <th>Re-Password</th>
                             <th>User Type</th>
                             <th>Company Name</th>
                             <th>Type of Business</th>
-                            <th>Verification Code</th>
                             <th>Is Verified?</th>
+                            <!-- <th>Online/Offline</th> -->
                             <th>Action</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="user_grid">
                         <?php 
                             if($result->num_rows>0) {
+                                $i = 1;
                                 while($row = $result->fetch_assoc()) { 
+                                    // $last_status = 'Offline';
+                                    // $class = "btn-danger";
+                                    // if($row['last_login']>$time) {
+                                    //     $last_status = 'Online';
+                                    //     $class = "btn-success";
+                                    // }
                         ?>
                                     <tr>
-                                        <td><?php echo $row['id']; ?></td>
+                                        <td><?php echo $i; ?></td>
                                         <td><?php echo $row['first_name']; ?></td>
                                         <td><?php echo $row['last_name']; ?></td>
                                         <td><?php echo $row['user_name']; ?></td>
                                         <td><?php echo $row['email']; ?></td>
-                                        <td><?php echo $row['password']; ?></td>
-                                        <td><?php echo $row['re_password']; ?></td>
                                         <td><?php echo $row['user_type']; ?></td>
                                         <td><?php echo $row['company_name']; ?></td>
                                         <td><?php echo $row['business_type']; ?></td>
-                                        <td><?php echo $row['verification_code']; ?></td>
-                                        <td><?php echo $row['is_verified']; ?></td>
+                                        <!-- <td><?php // echo $row['is_verified']; ?></td> -->
+
+                                        <?php 
+                                            $verified_status = $row['is_verified'];
+                                            if ($verified_status == 0) {
+                                                $ver_status = "No";
+                                            } else if ($verified_status == 1) {
+                                                $ver_status = "Yes";
+                                            }
+                                            echo "<td>".$ver_status."</td>";
+                                        ?>
+
+                                        <!-- <td><?php // echo $row['last_login']; ?></td> -->
+                                        <!-- <td><button type="button" class="btn <?php // echo $class ?>"><?php // echo $last_status ?></button></td> -->
                                         <td>
-                                            <a class="btn btn-info mb-1" href="admin_update.php?id=<?php echo $row['id']; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;
-                                            <a class='btn btn-danger' data-bs-toggle='modal' href='#static' role='button'><i class="far fa-trash-alt"></i></a>
+                                            <a class="btn btn-info mb-1" href="owner_update.php?id=<?php echo $row['id']; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;
+                                            <!-- <a class='btn btn-danger' data-bs-toggle='modal' href='#static' role='button'><i class="far fa-trash-alt"></i></a> -->
                                         </td>
+                                        <?php 
+                                            $status = $row['status'];
+                                            if ($status == 0) {
+                                                $strstatus = "<a href=useractivate.php?userID=".$row['id'].">Activate User</a>";
+                                            } else if ($status == 1) {
+                                                $strstatus = "<a class='text-danger' href=usernotactivate.php?userID=".$row['id'].">Deactivate User</a>";
+                                            }
+                                            echo "<td>".$strstatus."</td>";
+                                        ?>
                                     </tr>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <!-- <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -226,21 +179,22 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Firstname: <span class="badge bg-secondary"><?php echo $row['first_name']; ?></span></p>
-                                                <p>Lastname: <span class="badge bg-secondary"><?php echo $row['last_name']; ?></span></p>
-                                                <p>Username: <span class="badge bg-secondary"><?php echo $row['user_name']; ?></span></p>
-                                                <p>Email: &emsp;&emsp; <span class="badge bg-secondary"><?php echo $row['email']; ?></span></p>
-                                                <p>User type: <span class="badge bg-secondary"><?php echo $row['user_type']; ?></span></p>
+                                                <p>Firstname: <span class="badge bg-secondary"><?php // echo $row['first_name']; ?></span></p>
+                                                <p>Lastname: <span class="badge bg-secondary"><?php // echo $row['last_name']; ?></span></p>
+                                                <p>Username: <span class="badge bg-secondary"><?php // echo $row['user_name']; ?></span></p>
+                                                <p>Email: &emsp;&emsp; <span class="badge bg-secondary"><?php // echo $row['email']; ?></span></p>
+                                                <p>User type: <span class="badge bg-secondary"><?php // echo $row['user_type']; ?></span></p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a class="btn btn-danger" href="admin_delete.php?id=<?php echo $row['id']; ?>">Delete</i></a> 
+                                                <a class="btn btn-danger" href="owner_delete.php?id=<?php // echo $row['id']; ?>">Delete</i></a> 
                                             </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <?php 
+                                    $i++;
                                 }
                             }
                         ?>
@@ -255,8 +209,42 @@
             // }
         ?>
 
+        <!-- DataTable Plugin Script -->
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            });
+        </script>
+
+        <!-- <script>
+            // Update user status - Online/Offline
+            function updateUserStatus() {
+                jQuery.ajax({
+                    url: 'update_user_status.php',
+                    success: function() {
+                    }
+                });
+            }
+            function getUserStatus() {
+                jQuery.ajax({
+                    url: 'get_user_status.php',
+                    success: function(result) {
+                        jQuery('#user_grid').html(result);
+                    }
+                });
+            }
+
+            setInterval(function() {
+                updateUserStatus();
+            }, 5000); //Refresh after every 5 seconds
+
+            setInterval(function() {
+                getUserStatus();
+            }, 10000); //Refresh after every 10 seconds
+        </script> -->
+
         <!-- Popup Script -->
-        <script src="./popup_script.js"></script>
+        <script src="../popup_script.js"></script>
 
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

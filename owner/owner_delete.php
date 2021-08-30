@@ -1,5 +1,5 @@
 <?php
-    include "connection.php";
+    include "../connection.php";
 
     if(isset($_GET['id'])) {
         $user_id = $_GET['id'];
@@ -12,7 +12,7 @@
             echo"
                 <script>
                     alert('Deleted Successfully!');
-                    window.location.href = 'admin_view.php';
+                    window.location.href = 'owner_view.php';
                 </script>
             ";
         } else {

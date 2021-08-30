@@ -84,7 +84,7 @@
         </header>
 
         <div class="container">
-            <h1 class="text-center m-5">Admin Page</h1>
+            <h3 class="text-center m-5">Admin Page</h3>
             
             <a class='btn btn-secondary' data-bs-toggle='modal' href='#exampleModalToggle' role='button'> + Add User Detail</a>
             <!-- Modal to insert/update/delete the data start -->

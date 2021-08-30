@@ -1,0 +1,11 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#second, #third, #fourth, #fifth, #sixth, #seven, #eight, #nine, #ten {
+    display: none;
+}
+

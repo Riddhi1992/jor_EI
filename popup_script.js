@@ -16,3 +16,4 @@ function selectBusiness() {
     otherSelected.style.display = selectedBusiness.value == "Other" ? "block" : "none";
     // userSelected.style.display = selectedBusiness.value == "User" ? "block" : "none";
 }
+

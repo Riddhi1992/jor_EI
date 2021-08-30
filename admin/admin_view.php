@@ -2,6 +2,12 @@
     include "../connection.php";
     session_start();
 
+    if(!isset($_SESSION['UID'])) {
+        header('location: index.php');
+        die();
+    } 
+    $time = time();
+
     $query = "SELECT * FROM registered_users";
 
     $result = $con->query($query);
@@ -103,7 +109,7 @@
         </header>
 
         <div class="container">
-            <h1 class="text-center m-5">Admin Page</h1>
+            <h2 class="text-center m-5">Admin Page</h2>
 
             <a class='btn btn-secondary mb-5' data-bs-toggle='modal' href='#exampleModalToggle' role='button'> + Add User Detail</a>
             <!-- Modal to insert/update/delete the data start -->
@@ -194,33 +200,42 @@
                             <th>Last Name</th>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Password</th>
-                            <th>Re-Password</th>
+                            <!-- <th>Password</th> -->
+                            <!-- <th>Re-Password</th> -->
                             <th>User Type</th>
                             <th>Company Name</th>
                             <th>Type of Business</th>
-                            <th>Verification Code</th>
+                            <!-- <th>Verification Code</th> -->
+                            <!-- <th>Status</th> -->
                             <th>Is Verified?</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="user_grid">
                         <?php 
                             if($result->num_rows>0) {
+                                $i = 1;
                                 while($row = $result->fetch_assoc()) { 
+                                    // $status = 'Offline';
+                                    // $class = 'btn-danger';
+                                    // if($row['last_login'] > $time) {
+                                    //     $status = 'Online';
+                                    //     $class = 'btn-success';
+                                    // }
                         ?>
                                     <tr>
-                                        <td><?php echo $row['id']; ?></td>
+                                        <td><?php echo $i; ?></td>
                                         <td><?php echo $row['first_name']; ?></td>
                                         <td><?php echo $row['last_name']; ?></td>
                                         <td><?php echo $row['user_name']; ?></td>
                                         <td><?php echo $row['email']; ?></td>
-                                        <td><?php echo $row['password']; ?></td>
-                                        <td><?php echo $row['re_password']; ?></td>
+                                        <!-- <td><?php // echo $row['password']; ?></td> -->
+                                        <!-- <td><?php // echo $row['re_password']; ?></td> -->
                                         <td><?php echo $row['user_type']; ?></td>
                                         <td><?php echo $row['company_name']; ?></td>
                                         <td><?php echo $row['business_type']; ?></td>
-                                        <td><?php echo $row['verification_code']; ?></td>
+                                        <!-- <td><?php // echo $row['verification_code']; ?></td> -->
+                                        <!-- <td><button class='btn <?php // echo $class ?>'><?php // echo $status ?></button></td> -->
                                         <td><?php echo $row['is_verified']; ?></td>
                                         <td>
                                             <a class="btn btn-info mb-1" href="admin_update.php?id=<?php echo $row['id']; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;
@@ -252,6 +267,7 @@
                                     </div>
 
                                     <?php 
+                                    $i++;
                                 }
                             }
                         ?>
@@ -272,6 +288,32 @@
                 $('#example').DataTable();
             });
         </script>
+
+        <!-- <script>
+            function updateUserStatus() {
+                jQuery.ajax({
+                    url: "update_user_status.php",
+                    success: function (response) {
+                        
+                    }
+                });
+            }
+            function getUserStatus() {
+                jQuery.ajax({
+                    url: "get_user_status.php",
+                    success: function (response) {
+                        jQuery('#user_grid').html(response);
+                    }
+                });
+            }
+
+            setInterval (function() {
+                updateUserStatus();
+            }, 5000); // 5 seconds
+            setInterval (function() {
+                getUserStatus();
+            }, 10000); // 10 seconds
+        </script> -->
 
         <!-- Popup Script -->
         <script src="../popup_script.js"></script>

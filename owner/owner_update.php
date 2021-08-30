@@ -1,5 +1,5 @@
 <?php 
-    require("connection.php");
+    include "../connection.php";
     session_start();
 
     if(isset($_POST['update'])) {
@@ -22,7 +22,7 @@
             echo"
                 <script>
                     alert('Updated Successfully!');
-                    window.location.href = 'admin_view.php';
+                    window.location.href = 'owner_view.php';
                 </script>
             ";
         }
@@ -70,7 +70,7 @@
             </head>
             <body>
                 <h2>User Update Form</h2>
-                <form method="POST" action="admin_update.php">
+                <form method="POST" action="owner_update.php">
                     <div class="form-floating mb-3">
                         <input type="hidden" class="form-control" id="floatingInput10" placeholder="First Name" name="id" value="<?php echo $user_id; ?>" required>
                         <label for="floatingInput10">ID</label>
