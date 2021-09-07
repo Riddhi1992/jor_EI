@@ -1,109 +1,77 @@
 <?php 
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
-    $con = mysqli_connect("localhost", "root", "", "registered_user");
+    // include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php"; 
+    $con = mysqli_connect('localhost', 'root', '', 'registered_user');
 
-    if(mysqli_connect_error()) {
-        echo"<script>alert('Cannot connect to database');</script>";
-        exit();
+    if ($con->connect_error) {
+        die("Connection failed: " . $con->connect_error);
+    }
+
+    // if(mysqli_connect_error()) {
+    //     echo"<script>alert('Cannot connect to database');</script>";
+    //     exit();
+    // }
+    else {
+        // $sql = "INSERT INTO `owner_datas`(`question`, `video`) VALUES ('What is your name','Testing')";
+        // $sql = "INSERT INTO `owner_datas`(`question`, `video`) VALUES ('[What is your name]','[Testing]')";
+        // $res = mysqli_query($con, $sql);
+        // echo"<script>alert('Connection done');</script>";
+        
     }
 
     session_start();
-    // $result = $con->query($query);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
     <?php include "./includes/header.php" ?>
-
+</head>
+<body>
     <?php include "./includes/navbar.php" ?>
-
-    <div class="container">
-        <h3 class="text-center m-3">Frequently Asked Questions List</h3>
-        <!-- <p id="messagedisplay" class="mt-5"></p> -->
-        <!-- <div id="displaydata"></div> -->
-
-        <?php 
-            $result = mysqli_query($con, "SELECT COUNT(*) FROM owner_datas");
-            $row = mysqli_fetch_array($result);
-
-            $total = $row[0];
-
-            if($total <= 19) {
-                echo "
-                    <div class='border p-4 shadow rounded'>
-                        <form method='POST' action='' enctype='multipart/form-data'>
-                            <div class='form-floating mb-3'>
-                                <input type='text' class='form-control' id='floatingInput0' placeholder='Question' name='question' required>
-                                <label for='floatingInput0'>Question</label>
-                            </div>
-                            <div class='mb-3'>
-                                <label for='formFile' class='form-label'>Upload your Video here</label>
-                                <input class='form-control' type='file' id='formFile' name='file'>
-                            </div>
-                            <div class='row'>
-                ";
-            }
-        ?>
-        <!-- <div class="border p-4 shadow rounded">
-            <form method='POST' action='' enctype="multipart/form-data">
+    <div class="mt-5"></div>
+    <div class="container border rounded shadow">
+        <h3 class="text-center m-3">FAQ form</h3>
+        <form method="POST" class="m-5" action="" enctype="multipart/form-data">
+            <div id='first'>
                 <div class='form-floating mb-3'>
-                    <input type='text' class='form-control' id='floatingInput0' placeholder='Question' name='question' required>
-                    <label for='floatingInput0'>Question</label>
+                    <input type='text' class='form-control' id='floatingInput1' placeholder='Company Name' name='company_name' required>
+                    <label for='floatingInput1'>Company Name</label>
+                </div>
+                <div class='form-floating mb-3'>
+                    <input type='text' class='form-control' id='floatingInput2' placeholder='Business type' name='business_type' required>
+                    <label for='floatingInput2'>Type of Business</label>
+                </div>
+                <div class='form-floating mb-3'>
+                    <input type='text' class='form-control' id='floatingInput3' placeholder='Topic' name='topic' required>
+                    <label for='floatingInput3'>Topic</label>
+                </div>
+                <div class='form-floating mb-3'>
+                    <input type='text' class='form-control' id='floatingInput4' placeholder='Topic' name='description' required>
+                    <label for='floatingInput4'>Description</label>
                 </div>
                 <div class='mb-3'>
-                    <label for='formFile' class='form-label'>Upload your Video here</label>
+                    <label for='formFile' class='form-label'>Upload the topic image</label>
                     <input class='form-control' type='file' id='formFile' name='file'>
                 </div>
-                <div class='row'> -->
-                    <?php 
-                        $result = mysqli_query($con, "SELECT COUNT(*) FROM owner_datas");
-                        $row = mysqli_fetch_array($result);
-
-                        $total = $row[0];
-
-                        if($total <= 19) {
-                            echo "
-                                <div class='col'>
-                                    <button type='submit' class='btn btn-primary w-50' name='save' value='SAVE'>Save & Add Next</button>
-                                </div>
-                                <div class='col'>
-                                    <a class='btn btn-primary w-50' href='fetchdata.php'>Save & Finish</a>
-                                </div>
-                            ";
-                        }
-                        else {
-                            echo "
-                                <div class='row mt-5'>
-                                    <div class='col d-flex justify-content-center'>
-                                        <a class='btn btn-primary w-50' href='contact_Admin.php'>Add more FAQ</a>
-                                    </div>
-                                    <div class='col d-flex justify-content-center'>
-                                        <a class='btn btn-primary w-50' href='fetchdata.php'>View All FAQ</a>
-                                    </div>
-                                </div>
-                                ";        
-                        }
-                    ?>
-                    <!-- <div class='col'>
-                        <button type='submit' class='btn btn-primary w-50' id='displaybtn' name='save_finish' value='Display Data'>Save & Finish</button>
+                <div class='row mb-3 mt-5'>
+                    <div class='col'>
+                        <!-- <a href='#' type='submit' role='button' class='btn btn-primary w-100' name='save' id='prev-2' value='SAVE'>Previous</a> -->
                     </div>
                     <div class='col'>
-                        <button type='submit' class='btn btn-primary w-50' id='displaybtn' name='save_finish' value='Display Data'><a class='btn-primary' href='fetchdata.pho'>Save & Finish</a></button>
-                    </div> -->
-                    <!-- <div class='col'>
-                        <button type='submit' class='btn btn-primary w-75' name='save_finish'>Save & Finish</button>
-                    </div> -->
-                    <?php
-                    
-                    echo "
+                        <button type='submit' class='btn btn-primary w-100' name='save' value='SAVE'>Save & Add Next</button>
+                    </div>
+                    <div class="col">
+                        <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='fetchdata.php'>Save & Finish</a></button>
+                    </div>
                 </div>
-            </form>
-        </div>
-        ";
-        ?>
-        
-        </div>
-    </body>
+            </div>
+        </form>
+    </div>
+</body>
 </html>
 
 <?php 
@@ -111,23 +79,28 @@
         $name = $_FILES['file']['name'];
         $tmp = $_FILES['file']['tmp_name'];
 
-        move_uploaded_file($tmp, "../videos/".$name);
+        move_uploaded_file($tmp, '../images/'.$name);
 
-        $sql = "INSERT INTO owner_datas (question, video, date_updated) VALUES ('$_POST[question]','$name', NOW())";
+        // $sql = "INSERT INTO `owner_datas`(`question`, `video`) VALUES ('$_POST[question]','$name')";
+        $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `topic`, `description`, `image`) VALUES ('$_POST[company_name]','$_POST[business_type]','$_POST[topic]','$_POST[description]','$name')";
         $res = mysqli_query($con, $sql);
 
         if($res == 1) {
-            echo"
+            echo "
                 <script>
-                    alert('Video 🎥 inserted Successfully!!!');
-                    // alert($res)
-                    window.location.href = 'faq.php';
+                    alert('Data inserted Successfully!!!');
+                    window.location.href = 'faq01.php';
                 </script>
             ";
         }
-        
+        else {
+            echo "
+                <script>
+                    alert('Error');
+                    // alert($res);
+                </script>
+            ";
+        }
+
     }
-
-    
 ?>
-
