@@ -1,6 +1,6 @@
     <body>
         <div class="d-flex justify-content-center">
-            <h2 class="">DrHologram</h2>
+            <h2 class="m-4">Dr. Hologram</h2>
         </div>
         <!-- Header start -->
         <header class="container">    
@@ -17,14 +17,16 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="../dashboard01.php">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../owner_view.php">User Data</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../faq/faq.php">FAQ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../faq/fetchdata.php">FAQ View</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Programs
+                                </a>
+                                <!-- <a class="nav-link dropdown-toggle" href="../owner_view.php"></a> -->
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="../faq/faq.php">Start a Program</a></li>
+                                    <li><a class="dropdown-item" href="../faq/activeFetchdata.php">Active Programs</a></li>
+                                    <li><a class="dropdown-item" href="../faq/nonActiveFetchdata.php">Archived Programs</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>

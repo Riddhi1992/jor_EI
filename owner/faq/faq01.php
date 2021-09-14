@@ -46,15 +46,29 @@
                     <input class='form-control' type='file' id='formFile' name='file'>
                 </div>
                 <div class='row mb-3 mt-5'>
-                    <div class='col'>
-                        <button type='submit' class='btn btn-primary w-100' name='update' value='SAVE'>Update</button>
-                    </div>
-                    <div class='col'>
-                        <button type='submit' class='btn btn-primary w-100' name='save' value='SAVE'>Save & Add Next</button>
-                    </div>
-                    <div class="col">
-                        <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='fetchdata.php'>Save & Finish</a></button>
-                    </div>
+                    <?php 
+                        if(isset($_GET['id']) && $_GET['topic']) {
+                            echo "
+                                <div class='col'></div>  
+                                <div class='col'></div>  
+                                <div class='col'>
+                                    <button type='submit' class='btn btn-primary w-100' name='update' value='SAVE'>Update</button>
+                                </div>
+                            ";
+                        }
+                        else {
+                            echo "
+                                <div class='col'></div>
+                                <div class='col'>
+                                    <button type='submit' class='btn btn-primary w-100' name='save' value='SAVE'>Save & Add Next</button>
+                                </div>
+                                <div class='col'>
+                                    <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='activeFetchdata.php'>Save & Finish</a></button>
+                                </div>            
+                            ";
+                        }
+                    ?>
+                    
                 </div>
             </div>
         </form>
@@ -73,7 +87,7 @@
             $tmp = $_FILES['file']['tmp_name'];
             move_uploaded_file($tmp, '../videos/'.$name);
 
-            $sql = "UPDATE `client_data` SET `ques1`='$_POST[question]',`ans1`='$name' WHERE `ques1` IS NULL ORDER BY id DESC LIMIT 1";
+            $sql = "UPDATE `client_data` SET `ques1`='$_POST[question]',`ans1`='$name', `date1`=NOW() WHERE `ques1` IS NULL ORDER BY id DESC LIMIT 1";
             $res = mysqli_query($con, $sql);
 
             if($res) {
@@ -101,10 +115,12 @@
                 $tmp = $_FILES['file']['tmp_name'];
                 move_uploaded_file($tmp, '../videos/'.$name);
     
-                $sql = "UPDATE `client_data` SET `ques1`='$_POST[question]',`ans1`='$name' WHERE `topic`='$topic'";
+                $sql = "UPDATE `client_data` SET `ques1`='$_POST[question]',`ans1`='$name', `date1`=NOW() WHERE `topic`='$topic'";
+                // $sql1 = "ALTER TABLE client_data CHANGE `date1` `date1` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
                 $res = mysqli_query($con, $sql);
+                // $res1 = mysqli_query($con, $sql1);
             
-                if($res) {
+                if($res ) {
                     echo"
                         <script>
                             alert('First Question added successfully!');

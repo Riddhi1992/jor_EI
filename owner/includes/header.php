@@ -28,5 +28,7 @@
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
         <script src="https://kit.fontawesome.com/970b4cc451.js" crossorigin="anonymous"></script>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     </head>
     

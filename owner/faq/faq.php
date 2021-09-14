@@ -34,7 +34,7 @@
     <?php include "./includes/navbar.php" ?>
     <div class="mt-5"></div>
     <div class="container border rounded shadow">
-        <h3 class="text-center m-3">FAQ form</h3>
+        <h3 class="text-center m-3">Start a Program</h3>
         <form method="POST" class="m-5" action="" enctype="multipart/form-data">
             <div id='first'>
                 <div class='form-floating mb-3'>
@@ -81,7 +81,6 @@
 
         move_uploaded_file($tmp, '../images/'.$name);
 
-        // $sql = "INSERT INTO `owner_datas`(`question`, `video`) VALUES ('$_POST[question]','$name')";
         $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `topic`, `description`, `image`) VALUES ('$_POST[company_name]','$_POST[business_type]','$_POST[topic]','$_POST[description]','$name')";
         $res = mysqli_query($con, $sql);
 
@@ -96,8 +95,8 @@
         else {
             echo "
                 <script>
-                    alert('Error');
-                    // alert($res);
+                    // alert('Error');
+                    alert($res);
                 </script>
             ";
         }

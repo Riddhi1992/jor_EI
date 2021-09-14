@@ -20,7 +20,7 @@
     <?php include "./includes/navbar.php" ?>
 
         <div class="container">
-            <h1 class="text-center m-5">USER DETAIL PAGE</h1>
+            <h3 class="text-center m-5">USER DETAIL PAGE</h3>
 
             <a class='btn btn-secondary' data-bs-toggle='modal' href='#exampleModalToggle' role='button'> + Add User Detail</a>
             <!-- Modal to insert/update/delete the data start -->
@@ -117,7 +117,7 @@
                             <th>Is Verified?</th>
                             <!-- <th>Online/Offline</th> -->
                             <th>Action</th>
-                            <th>Status</th>
+                            <!-- <th>Status</th> -->
                         </tr>
                     </thead>
                     <tbody id="user_grid">
@@ -160,38 +160,15 @@
                                             <!-- <a class='btn btn-danger' data-bs-toggle='modal' href='#static' role='button'><i class="far fa-trash-alt"></i></a> -->
                                         </td>
                                         <?php 
-                                            $status = $row['status'];
-                                            if ($status == 0) {
-                                                $strstatus = "<a href=useractivate.php?userID=".$row['id'].">Activate User</a>";
-                                            } else if ($status == 1) {
-                                                $strstatus = "<a class='text-danger' href=usernotactivate.php?userID=".$row['id'].">Deactivate User</a>";
-                                            }
-                                            echo "<td>".$strstatus."</td>";
+                                            // $status = $row['status'];
+                                            // if ($status == 0) {
+                                            //     $strstatus = "<a href=useractivate.php?userID=".$row['id'].">Activate User</a>";
+                                            // } else if ($status == 1) {
+                                            //     $strstatus = "<a class='text-danger' href=usernotactivate.php?userID=".$row['id'].">Deactivate User</a>";
+                                            // }
+                                            // echo "<td>".$strstatus."</td>";
                                         ?>
                                     </tr>
-
-                                    <!-- Modal -->
-                                    <!-- <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-center" id="staticBackdropLabel">Are you sure, you want to delete the record mentioned below?</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Firstname: <span class="badge bg-secondary"><?php // echo $row['first_name']; ?></span></p>
-                                                <p>Lastname: <span class="badge bg-secondary"><?php // echo $row['last_name']; ?></span></p>
-                                                <p>Username: <span class="badge bg-secondary"><?php // echo $row['user_name']; ?></span></p>
-                                                <p>Email: &emsp;&emsp; <span class="badge bg-secondary"><?php // echo $row['email']; ?></span></p>
-                                                <p>User type: <span class="badge bg-secondary"><?php // echo $row['user_type']; ?></span></p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a class="btn btn-danger" href="owner_delete.php?id=<?php // echo $row['id']; ?>">Delete</i></a> 
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
 
                                     <?php 
                                     $i++;
@@ -202,12 +179,6 @@
                 </table>
             </div>
         </div>
-
-        <?php 
-            // if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true) {
-            //     echo"<div class='d-flex justify-content-center'><h1 class='m-5 center'>WELCOME, $_SESSION[username]!</h1></div>";
-            // }
-        ?>
 
         <!-- DataTable Plugin Script -->
         <script>
