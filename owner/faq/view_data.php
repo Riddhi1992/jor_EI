@@ -28,12 +28,6 @@
         $query = "SELECT * FROM `client_data` WHERE `topic` = '$topic'";
         $result = mysqli_query($con, $query);
 
-        if(isset($_GET['visCon'])) {
-            $visCon = $_GET['visCon'];
-            $sql = "UPDATE `client_data` SET `visitor_counter` = $visCon+1 WHERE id = $id";
-            $res = mysqli_query($con, $sql);
-        }
-
         if($result) {
             $row = mysqli_fetch_array($result);
 
@@ -43,6 +37,7 @@
                     <h3 class='text-center'>Company Name: $row[company_name]</h3>
                     <h4 class='text-center'>Business: $row[business_type]</h4>
                     <h4 class='text-center'>Topic: $row[topic]</h4>
+                    <h4 class='text-center'>User visited # $row[visitor_counter]</h4>
 
                     <div class='table-responsive mb-5'>
                         <table id='example' class='table table-striped table-hover shadow-lg mt-3 mb-3'>

@@ -11,9 +11,6 @@
         <?php include "./includes/navbar.php" ?>
 
         <h3 class="text-center m-3">Programs</h3>
-        <div class="d-flex justify-content-end">
-            <button class='btn btn-primary m-3' data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact Admin"><a class='text-light text-decoration-none' href='contact_Admin.php'>Contact Admin <i class="far fa-paper-plane"></i> </a></button>&nbsp;
-        </div>
     </body>
 </html>
 
@@ -58,7 +55,7 @@
                                 <p class='card-text'>$row[description]</p>
                                 <p>Created By: <span class='text-primary'>$row[company_name]</span></p>
                                 <p>Created on: <span class='text-primary'>$row[date_inserted]</span></p>
-                                <button class='btn btn-primary'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&topic=$row[topic]&visCon=$visitor_counter'>Play</a></button>&nbsp;
+                                <button class='btn btn-primary'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&topic=$row[topic]&visCon=$visitor_counter'>Play <i class='far fa-play-circle'></i></a></button>&nbsp;
                                 <button class='btn $class disable'>$strstatus</button>&nbsp;
                                 <p class='mt-2'>User visited # <span class='badge bg-primary'>$row[visitor_counter]</span></p>
                             </div>

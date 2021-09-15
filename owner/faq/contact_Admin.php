@@ -1,6 +1,14 @@
 <?php 
     include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+    // $con = mysqli_connect("localhost", "root", "", "registered_user");
+
+    // if(mysqli_connect_error()) {
+    //     echo"<script>alert('Cannot connect to database');</script>";
+    //     exit();
+    // }
+
     session_start();
+    // $result = $con->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +105,7 @@
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom('example@gmail.com', 'Example');
+            $mail->setFrom('example@gmail.com', 'example');
             $mail->addAddress($email);               //Name is optional
 
             $mail->addAddress($email, $name);     //Add a recipient
@@ -106,23 +114,14 @@
             // $mail->addBCC('bcc@example.com');
         
             //Attachments
-            
-
-            // $mail->addAttachment($name1);         //Add attachments
-
             foreach ($name1 as $key => $value) {
                 $mail->addAttachment($tmp[$key], $name1[$key]);
             }
-            
-            // $mail->addAttachment($tmp, $name1);    //Optional name
         
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             // $mail->Subject = 'Email verification from DrHologram';
             $mail->Subject = $emailSubject;
-            // $mail->Body    = "Thanks for registration!
-            //     Click the link below to verify the email address
-            //     <a href='http://localhost:8000/LoginSystem/verify.php?email=$email&v_code=$v_code'>Verify</a>";
             $mail->Body    = $html;
             // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
