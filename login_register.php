@@ -72,7 +72,7 @@
                             $_SESSION['logged_in']=true;
                             $_SESSION['username']=$result_fetch['user_name'];
                             if($result_fetch['user_type']=="User") {
-                                header("location: user.php");
+                                header("location: ./user/user.php");
                             }
                             else if ($result_fetch['user_type']=="Owner") {
                                 // Online Offline
