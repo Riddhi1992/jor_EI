@@ -9,12 +9,11 @@
         $user_name = $_POST['user_name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $repassword = $_POST['repassword'];
         $useradmin = $_POST['useradmin'];
         $companyname = $_POST['companyname'];
         $selection = $_POST['selection'];
 
-        $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$companyname',`user_name`='$user_name',`email`='$email',`password`='$password',`re_password`='$repassword',`business_type`='$selection',`user_type`='$useradmin' WHERE `id`='$user_id'";
+        $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$companyname',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='$selection',`user_type`='$useradmin' WHERE `id`='$user_id'";
 
         $result = $con->query($query);
 
@@ -46,7 +45,6 @@
                 $user_name = $row['user_name'];
                 $email = $row['email'];
                 $password = $row['password'];
-                $repassword = $row['re_password'];
                 $useradmin = $row['user_type'];
                 $companyname = $row['company_name'];
                 $selection = $row['business_type'];
@@ -88,10 +86,6 @@
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="floatingPassword0" placeholder="Password" name="password" value="<?php echo $password; ?>" required>
                                 <label for="floatingPassword0">Password</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword1" placeholder="Password" name="repassword" value="<?php echo $repassword; ?>" required>
-                                <label for="floatingPassword1">Re-enter Password</label>
                             </div>
 
                             <div class="selectmenu form-floating mb-3">
