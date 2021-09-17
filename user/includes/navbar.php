@@ -14,10 +14,13 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="user.php">Home</a>
+                                <a class="nav-link active" aria-current="page" href="user.php">Home <i class="fas fa-home"></i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="contact_Admin.php">Contact US</a>
+                                <a class="nav-link" aria-current="page" href="profile.php">Profile <i class="fas fa-user"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="contact_Admin.php">Contact US <i class="fas fa-paper-plane"></i></a>
                             </li>
                         </ul>
                     </div>

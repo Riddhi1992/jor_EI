@@ -14,11 +14,11 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="dashboard01.php">Home</a>
+                                <a class="nav-link active" aria-current="page" href="dashboard01.php">Home <i class="fas fa-home"></i></a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Programs
+                                    Programs <i class="fas fa-folder-plus"></i>
                                 </a>
                                 <!-- <a class="nav-link dropdown-toggle" href="../owner_view.php"></a> -->
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -26,6 +26,9 @@
                                     <li><a class="dropdown-item" href="./faq/activeFetchdata.php">Active Programs</a></li>
                                     <li><a class="dropdown-item" href="./faq/nonActiveFetchdata.php">Archived Programs</a></li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="profile.php">Profile <i class="fas fa-user"></i></a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a class="nav-link" href="./faq/faq.php">Start a Program</a>

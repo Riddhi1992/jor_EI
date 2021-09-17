@@ -70,8 +70,9 @@
 
         <?php 
             if(isset($_POST['updatepassword'])) {
-                $pass = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                $update = "UPDATE `registered_users` SET `password`='$pass',`resettoken`=NULL,`resettokenexpire`=NULL WHERE `email`='$_POST[email]'";
+                // $pass = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                // $pass = $_POST['password'];
+                $update = "UPDATE `registered_users` SET `password`='$_POST[password]',`resettoken`=NULL,`resettokenexpire`=NULL WHERE `email`='$_POST[email]'";
                 if(mysqli_query($con, $update)) {
                     echo "
                         <script>

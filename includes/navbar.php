@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-            <h2 class="">DrHologram</h2>
+            <h2 class="m-4">Dr. Hologram</h2>
         </div>
         <!-- Header start -->
         <header class="container">    

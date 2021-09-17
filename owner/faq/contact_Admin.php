@@ -17,10 +17,10 @@
 
     <?php include "./includes/navbar.php" ?>
 
-        <div class="container">
-            <h3 class="text-center m-3">Contact Admin</h3>
-            <div class="d-flex justify-content-center">
-                <form class="w-75" method="POST" enctype="multipart/form-data">
+        <div class="container mb-5 d-flex justify-content-center">
+            <div class="shadow mt-5 p-5 w-50">
+                <h3 class="text-center mb-5">Contact Admin</h3>
+                <form class="" method="POST" enctype="multipart/form-data">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="name" placeholder="name" name="name" required>
                         <label for="name">Name</label>
@@ -100,7 +100,7 @@
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'example@gmail.com';                     //SMTP username
-            $mail->Password   = 'example';                               //SMTP password
+            $mail->Password   = 'example!@#';                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
@@ -114,14 +114,23 @@
             // $mail->addBCC('bcc@example.com');
         
             //Attachments
+            
+
+            // $mail->addAttachment($name1);         //Add attachments
+
             foreach ($name1 as $key => $value) {
                 $mail->addAttachment($tmp[$key], $name1[$key]);
             }
+            
+            // $mail->addAttachment($tmp, $name1);    //Optional name
         
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             // $mail->Subject = 'Email verification from DrHologram';
             $mail->Subject = $emailSubject;
+            // $mail->Body    = "Thanks for registration!
+            //     Click the link below to verify the email address
+            //     <a href='http://localhost:8000/LoginSystem/verify.php?email=$email&v_code=$v_code'>Verify</a>";
             $mail->Body    = $html;
             // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         

@@ -15,7 +15,11 @@
     </body>
 </html>
 
-<?php
+<?php 
+    // include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+    // session_start();
+    // $result = $con->query($query);
+
     $query = "SELECT * FROM `client_data`";
 
     $query_run = mysqli_query($con, $query);
@@ -70,5 +74,50 @@
             </div>
         </div>
     ";
+    // if($query_run) {
+    //     $j = 1;
+    //     while($row = mysqli_fetch_array($query_run)) {
+    //         $id = $row['id'];
+    //         $ans1 = $row['ans1'];
+    //         $ans2 = $row['ans2'];
+    //         echo "
+    //             <tr>
+    //                 <th scope='row'>$j</th>
+    //                 <td>$row[ques1]</td>
+    //                 <td>$row[ans1]</td>
+    //                 <td><a href='watch.php?id=$id'>".$ans1."</a></td>
+    //                 <td>$row[date_inserted]</td>
+    //                 <td><a class='btn btn-info mb-1' href='faq_update.php?id=$row[id]'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>
+    //             </tr>                
+    //         ";
+    //         $j++;
+    //         echo "
+    //             <tr>
+    //                 <th scope='row'>$j</th>
+    //                 <td>$row[ques2]</td>
+    //                 <td>$row[ans2]</td>
+    //                 <td><a href='watch.php?id=$id'>".$ans2."</a></td>
+    //                 <td>$row[date_inserted]</td>
+    //                 <td><a class='btn btn-info mb-1' href='faq_update.php?id=$row[id]'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>
+    //             </tr>
+    //         ";
+    //     }
+    // }
+    // else {
+    //     echo"
+    //         <script>
+    //             alert('No record found!');
+    //             window.location.href = 'faq.php';
+    //         </script>
+    //     ";
+    // }
+
+    // echo "
+    //                 </tbody>
+    //             </table>
+    //         </div>
+    //     </div>
+    // ";
+
 ?>
 

@@ -22,7 +22,7 @@
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'example@gmail.com';                     //SMTP username
-            $mail->Password   = 'example';                               //SMTP password
+            $mail->Password   = 'Example';                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
@@ -66,8 +66,9 @@
                 $result_fetch=mysqli_fetch_assoc($result);
 
                 if($result_fetch['is_verified']==1) {
-                    if($result_fetch['status']==1) {
-                        if(password_verify($_POST['password'], $result_fetch['password'])) {
+                    // if($result_fetch['status']==1) {
+                        // if(password_verify($_POST['password'], $result_fetch['password'])) {
+                        if($_POST['password'] == $result_fetch['password']) {
                             // if password matched
                             $_SESSION['logged_in']=true;
                             $_SESSION['username']=$result_fetch['user_name'];
@@ -98,15 +99,15 @@
                                 </script>
                             ";
                         }
-                    }
-                    else {
-                        echo"
-                            <script>
-                                alert('Please contact the admin to activate your account!');
-                                window.location.href = 'index.php';
-                            </script>
-                        ";   
-                    }
+                    // }
+                    // else {
+                    //     echo"
+                    //         <script>
+                    //             alert('Please contact the admin to activate your account!');
+                    //             window.location.href = 'index.php';
+                    //         </script>
+                    //     ";   
+                    // }
                 }
                 
             }
@@ -160,15 +161,17 @@
             }
             else {
                 // No one has taken username or email
-                $password=password_hash($_POST['password'], PASSWORD_BCRYPT);
-                $repassword=password_hash($_POST['repassword'], PASSWORD_BCRYPT);
+                // $password=password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $password=$_POST['password'];
+                // $repassword=password_hash($_POST['repassword'], PASSWORD_BCRYPT);
+                $repassword=$_POST['repassword'];
                 $reset_token = bin2hex(random_bytes(16));
                 date_default_timezone_set('America/Los_Angeles');
                 $date = date("Y-m-d");
                 $v_code = bin2hex(random_bytes(16));
 
-                $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `re_password`, `business_type`, `user_type`, `verification_code`, `is_verified`, `status`, `resettoken`, `resettokenexpire`) 
-                VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$password','$repassword','$_POST[selection]','$_POST[useradmin]','$v_code', '0', '1', NULL, NULL)";
+                $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `re_password`, `business_type`, `user_type`, `verification_code`, `is_verified`, `resettoken`, `resettokenexpire`) 
+                VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$password','$repassword','$_POST[selection]','$_POST[useradmin]','$v_code', '0', NULL, NULL)";
 
                 // $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `re_password`, `business_type`, `user_type`, `verification_code`, `is_verified`) VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$password','$repassword','$_POST[selection]','$_POST[useradmin]','$v_code','0')";
                 // $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `re_password`, `business_type`, `user_type`, `verification_code`, `is_verified`) VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$_POST[password]','$_POST[repassword]','$_POST[selection]','$_POST[useradmin]','$v_code','0')";

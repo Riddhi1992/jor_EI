@@ -1,7 +1,6 @@
 <?php 
     include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
     session_start();
-    // $result = $con->query($query);
 ?>
 
 <!DOCTYPE html>

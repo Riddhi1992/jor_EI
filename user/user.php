@@ -5,8 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php include "./includes/header.php" ?>
-
-
     <body>
         <?php include "./includes/navbar.php" ?>
 
@@ -15,10 +13,6 @@
 </html>
 
 <?php 
-    // include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
-    // session_start();
-    // $result = $con->query($query);
-
     $query = "SELECT * FROM `client_data`";
 
     $query_run = mysqli_query($con, $query);

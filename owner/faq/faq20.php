@@ -1,23 +1,5 @@
 <?php 
-    // include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php"; 
-    $con = mysqli_connect('localhost', 'root', '', 'registered_user');
-
-    if ($con->connect_error) {
-        die("Connection failed: " . $con->connect_error);
-    }
-
-    // if(mysqli_connect_error()) {
-    //     echo"<script>alert('Cannot connect to database');</script>";
-    //     exit();
-    // }
-    else {
-        // $sql = "INSERT INTO `owner_datas`(`question`, `video`) VALUES ('What is your name','Testing')";
-        // $sql = "INSERT INTO `owner_datas`(`question`, `video`) VALUES ('[What is your name]','[Testing]')";
-        // $res = mysqli_query($con, $sql);
-        // echo"<script>alert('Connection done');</script>";
-        
-    }
-
+    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php"; 
     session_start();
 ?>
 
