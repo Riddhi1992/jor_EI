@@ -8,6 +8,7 @@
         $user_name = $_POST['user_name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        // $repassword = $_POST['repassword'];
         $useradmin = $_POST['useradmin'];
         $companyname = $_POST['companyname'];
         $selection = $_POST['selection'];

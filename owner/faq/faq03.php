@@ -1,5 +1,5 @@
 <?php 
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php"; 
+    include "../../connection.php"; 
     session_start();
 ?>
 
@@ -23,9 +23,60 @@
                     <input type='text' class='form-control' id='input' placeholder='Company Name' name='id'>
                     <label for='input'>ID</label>
                 </div>
-                <div class='form-floating mb-3'>
-                    <input type='text' class='form-control' id='floatingInput0' placeholder='Question' name='question' required>
-                    <label for='floatingInput0'>Question</label>
+                <div class="selectmenu form-floating mb-3">
+                    <select class="form-select" aria-label="Floating label select example" id="selection" name="question" onchange="selectOption()" required>
+                        <option value="Selection" selected>Select third question</option>
+                        <?php 
+                            if(isset($_GET['option']) || $_GET['id']){
+                                $option = $_GET['option'];
+                                $id = $_GET['id'];
+                                $ques = $_GET['ques'];
+
+                                $sql = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option'";
+                                $result = mysqli_query($con, $sql);
+                                $row = mysqli_fetch_assoc($result);
+
+                                $query = "SELECT * FROM `client_data` ORDER BY id DESC LIMIT 1";
+                                $res = mysqli_query($con, $query);
+                                $row_fetch = mysqli_fetch_assoc($res);
+                                $ques1 = $row_fetch['ques1']; 
+                                $ques2 = $row_fetch['ques2']; 
+
+                                $idQuery = "SELECT * FROM `client_data` WHERE `id`='$id'";
+                                $idRes = mysqli_query($con, $idQuery);
+                                $idRow = mysqli_fetch_assoc($idRes);
+                                $q1 = $idRow['ques1'];
+                                $q2 = $idRow['ques2'];
+
+                                $sql2 = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option' AND NOT `question`='$que1' AND NOT `question`='$ques2' AND NOT `question`='$q1' AND NOT `question`='$q1' AND NOT `question`='$q2'";
+                                $res2 = mysqli_query($con, $sql2);
+
+                                if ($option == 'Purchase') {
+                                    if($result) {
+                                        if($res2) {
+                                            while ($row = mysqli_fetch_assoc($res2)) {
+                                                echo "
+                                                    <option value='$row[question]'>$row[question]</option>
+                                                ";
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    if($result) {
+                                        if($res2) {
+                                            while ($row = mysqli_fetch_assoc($res2)) {
+                                                echo "
+                                                    <option value='$row[question]'>$row[question]</option>
+                                                ";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ?>           
+                    </select>
+                    <label for="floatingSelect">Question</label>
                 </div>
                 <div class='mb-3'>
                     <label for='formFile' class='form-label'>Upload your Video here</label>
@@ -33,6 +84,10 @@
                 </div>
                 <div class='row mb-3 mt-5'>
                     <?php 
+                        $query = "SELECT * FROM `registered_users` WHERE `user_name` = '$_SESSION[username]'";
+                        $result = mysqli_query($con, $query);
+                        $row_data = mysqli_fetch_array($result);
+
                         if(isset($_GET['id']) && $_GET['topic']) {
                             echo "
                                 <div class='col'></div>  
@@ -48,10 +103,22 @@
                                 <div class='col'>
                                     <button type='submit' class='btn btn-primary w-100' name='save' value='SAVE'>Save & Add Next</button>
                                 </div>
-                                <div class='col'>
-                                    <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='activeFetchdata.php'>Save & Finish</a></button>
-                                </div>            
                             ";
+                            if($row_data['user_type'] == 'Admin') {
+                                echo "
+                                    <div class='col'>
+                                        <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='../../admin/activeFetchdata.php'>Save & Finish</a></button>
+                                    </div>
+                                ";
+                            }
+                            else {
+                                echo "
+                                    <div class='col'>
+                                        <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='activeFetchdata.php'>Save & Finish</a></button>
+                                    </div>            
+                                ";
+                            }
+                                
                         }
                     ?>
                 </div>
@@ -64,23 +131,26 @@
 
 
 <?php 
-    if(isset($_POST['save'])) {
+    if(isset($_POST['save']) && $_GET['topic'] && $_GET['option']) {
+        $topic = $_GET['topic'];
+        $option = $_GET['option'];
         $query3 = "SELECT * FROM `client_data` WHERE `ques3` IS NULL AND `ans3` IS NULL";
         $result3 = mysqli_query($con, $query3);
+        $result_fetch = mysqli_fetch_assoc($result3);
 
         if($result3) {
             $name = $_FILES['file']['name'];
             $tmp = $_FILES['file']['tmp_name'];
             move_uploaded_file($tmp, '../videos/'.$name);
 
-            $sql = "UPDATE `client_data` SET `ques3`='$_POST[question]',`ans3`='$name', `date3`=NOW() WHERE `ques3` IS NULL ORDER BY id DESC LIMIT 1";
+            $sql = "UPDATE `client_data` SET `ques3`='$_POST[question]',`ans3`='$name', `topic_ques03`=CONCAT('$topic', ' - q3'), `date3`=NOW() WHERE `ques3` IS NULL ORDER BY id DESC LIMIT 1";
             $res = mysqli_query($con, $sql);
         
             if($res) {
                 echo"
                     <script>
                         alert('Third Question updated successfully!');
-                        window.location.href = 'faq04.php';
+                        window.location.href = 'faq04.php?topic=$topic&option=$option';
                     </script>
                 ";
             }
@@ -88,27 +158,29 @@
     }
 
     if(isset($_POST['update'])) {
-        if(isset($_GET['id']) && $_GET['topic']) {
+        if(isset($_GET['id']) && $_GET['topic'] && $_GET['option']) {
             $topic = $_GET['topic'];
             $id = $_GET['id'];
+            $opt = $_GET['option'];
 
-            $query = "SELECT * FROM `client_data` WHERE `ques3` IS NULL AND `id`='$id'";
+            $query = "SELECT * FROM `client_data` WHERE `ques5` IS NULL AND `id`='$id'";
             $result = mysqli_query($con, $query);
+            $row = mysqli_fetch_array($result);
+            $visCon = $row['visitor_counter'];
             
             if($result) {
-                $row = mysqli_fetch_array($result);
                 $name = $_FILES['file']['name'];
                 $tmp = $_FILES['file']['tmp_name'];
                 move_uploaded_file($tmp, '../videos/'.$name);
     
-                $sql = "UPDATE `client_data` SET `ques3`='$_POST[question]',`ans3`='$name', `date3`=NOW() WHERE `topic`='$topic'";
+                $sql = "UPDATE `client_data` SET `ques3`='$_POST[question]',`ans3`='$name',`topic_ques03`=CONCAT('$topic', ' - q3'), `date3`=NOW() WHERE `topic`='$topic'";
                 $res = mysqli_query($con, $sql);
             
                 if($res) {
                     echo"
                         <script>
                             alert('Third Question added successfully!');
-                            window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                            window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$opt';
                         </script>
                     ";
                 }

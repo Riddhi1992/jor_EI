@@ -1,5 +1,5 @@
-<?php
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+<?php 
+    include "../../connection.php"; 
     session_start();
 ?>
 
@@ -16,14 +16,14 @@
 <?php 
     $user_id = $_GET['userID'];
     $topic = $_GET['topic'];
-    $query = "UPDATE `client_data` SET `status`='0' WHERE `id`='$user_id'";
+    $query = "UPDATE `client_data` SET `status`='1' WHERE `id`='$user_id'";
     $result = $con->query($query);
 
     if($result == TRUE) {
         echo "
             <script>
-                alert('This program is now Non-Active!');
-                window.location.href = 'nonActiveFetchdata.php';
+                alert('This program is now Activating!');
+                window.location.href = 'activeFetchdata.php';
             </script>
         ";
     }

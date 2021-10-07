@@ -1,13 +1,14 @@
 <?php 
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+    include "../../connection.php"; 
     session_start();
 
-    if(isset($_POST['update']) && $_GET['ques']) {
+    if(isset($_POST['update']) && $_GET['ques'] && $_GET['option']) {
         $question = $_POST['question'];
         $id = $_POST['id'];
         $name = $_FILES['file']['name'];
         $tmp = $_FILES['file']['tmp_name'];
         $ques = $_GET['ques'];
+        $option = $_GET['option'];
 
         move_uploaded_file($tmp, "../videos/".$name);
 
@@ -36,6 +37,8 @@
                 $ques11 = $row['ques18'];
                 $ques11 = $row['ques19'];
                 $ques11 = $row['ques20'];
+                $visCon = $row['visitor_counter'];
+                $topic = $row['topic'];
 
                 // for ($i=1; $i <=20; $i++) {
                 //     if($ques == $ques[$i]) {
@@ -54,261 +57,261 @@
                 // }
 
                 if($ques == $ques1) {
-                    $query1 = "UPDATE `client_data` SET `ques1`='$question',`ans1`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques1`='$question',`ans1`='$name', `date1`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('First question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques2) {
-                    $query1 = "UPDATE `client_data` SET `ques2`='$question',`ans2`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques2`='$question',`ans2`='$name', `date2`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Second question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques3) {
-                    $query1 = "UPDATE `client_data` SET `ques3`='$question',`ans3`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques3`='$question',`ans3`='$name', `date3`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Third question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques4) {
-                    $query1 = "UPDATE `client_data` SET `ques4`='$question',`ans4`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques4`='$question',`ans4`='$name', `date4`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Fourth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques5) {
-                    $query1 = "UPDATE `client_data` SET `ques5`='$question',`ans5`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques5`='$question',`ans5`='$name', `date5`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Fifth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques6) {
-                    $query1 = "UPDATE `client_data` SET `ques6`='$question',`ans6`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques6`='$question',`ans6`='$name', `date6`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Sixth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques7) {
-                    $query1 = "UPDATE `client_data` SET `ques7`='$question',`ans7`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques7`='$question',`ans7`='$name', `date7`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Seventh question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques8) {
-                    $query1 = "UPDATE `client_data` SET `ques8`='$question',`ans8`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques8`='$question',`ans8`='$name', `date8`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Eight question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques9) {
-                    $query1 = "UPDATE `client_data` SET `ques9`='$question',`ans9`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques9`='$question',`ans9`='$name', `date9`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Ninth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques10) {
-                    $query1 = "UPDATE `client_data` SET `ques10`='$question',`ans10`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques10`='$question',`ans10`='$name', `date10`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Tenth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques11) {
-                    $query1 = "UPDATE `client_data` SET `ques11`='$question',`ans11`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques11`='$question',`ans11`='$name', `date11`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Eleventh question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques12) {
-                    $query1 = "UPDATE `client_data` SET `ques12`='$question',`ans12`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques12`='$question',`ans12`='$name', `date12`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Twelfth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques13) {
-                    $query1 = "UPDATE `client_data` SET `ques13`='$question',`ans13`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques13`='$question',`ans13`='$name', `date13`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Thirteenth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques14) {
-                    $query1 = "UPDATE `client_data` SET `ques14`='$question',`ans14`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques14`='$question',`ans14`='$name', `date14`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Fourteenth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques15) {
-                    $query1 = "UPDATE `client_data` SET `ques15`='$question',`ans15`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques15`='$question',`ans15`='$name', `date15`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Fifteenth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques16) {
-                    $query1 = "UPDATE `client_data` SET `ques16`='$question',`ans16`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques16`='$question',`ans16`='$name', `date16`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Sixteenth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques17) {
-                    $query1 = "UPDATE `client_data` SET `ques17`='$question',`ans17`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques17`='$question',`ans17`='$name', `date17`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Seventeenth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques18) {
-                    $query1 = "UPDATE `client_data` SET `ques18`='$question',`ans18`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques18`='$question',`ans18`='$name', `date18`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Eighteenth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques19) {
-                    $query1 = "UPDATE `client_data` SET `ques19`='$question',`ans19`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques19`='$question',`ans19`='$name', `date19`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Nineteenth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
                 }
                 else if($ques == $ques20) {
-                    $query1 = "UPDATE `client_data` SET `ques20`='$question',`ans20`='$name' WHERE `id`='$id'";
+                    $query1 = "UPDATE `client_data` SET `ques20`='$question',`ans20`='$name', `date20`=NOW() WHERE `id`='$id'";
                     $result1 = mysqli_query($con, $query1);
     
                     if ($result1) {
                         echo "
                             <script>
                                 alert('Twentieth question updated');
-                                window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }

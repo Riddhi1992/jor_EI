@@ -34,7 +34,7 @@
                         <label for="emailSubject">Subject Line</label>
                     </div>
                     <div class='mb-3'>
-                        <label for='file' class='form-label'>Attachments <i class="fas fa-paperclip"></i></label>
+                        <label for='file' class='form-label ms-2'>Attachments <i class="fas fa-paperclip"></i></label>
                         <input class='form-control' type='file' id='file' name='file[]' multiple>
                     </div>
                     <div class="form-floating mb-3">
@@ -107,6 +107,7 @@
         
             //Recipients
             $mail->setFrom($email, $name);
+            
 
             $mail->addAddress('example@gmail.com');     //Add a recipient
             $mail->addReplyTo($email, $name);

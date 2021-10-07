@@ -17,97 +17,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- All meta tag -->
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>User - Login Page</title>
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="../styles.css">
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/jszip-2.5.0/dt-1.10.25/af-2.3.7/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/cr-1.5.4/date-1.1.0/fc-3.3.3/fh-3.1.9/kt-2.6.2/r-2.2.9/rg-1.1.3/rr-1.2.8/sc-2.0.4/sb-1.1.0/sp-1.3.0/sl-1.3.3/datatables.min.css"/>
-
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/jszip-2.5.0/dt-1.10.25/af-2.3.7/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/cr-1.5.4/date-1.1.0/fc-3.3.3/fh-3.1.9/kt-2.6.2/r-2.2.9/rg-1.1.3/rr-1.2.8/sc-2.0.4/sb-1.1.0/sp-1.3.0/sl-1.3.3/datatables.min.js"></script> -->
-        
-        <!-- DataTable -->
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-
-        <script src="https://kit.fontawesome.com/970b4cc451.js" crossorigin="anonymous"></script>
+        <?php include "./includes/header.php" ?>
     </head>
     <body>
-        <div class="d-flex justify-content-center">
-            <h2 class="">DrHologram</h2>
-        </div>
-        <!-- Header start -->
-        <header class="container">    
-            <!-- Nav start -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <!-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown link
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li> -->
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- Nav end -->
-
-            <!-- <button class='btn btn-secondary' action='register.php'>REGISTER</button> -->
-            <!-- <a class='btn btn-secondary' data-bs-toggle='modal' href='http://localhost:8000/LoginSystem/register.php' role='button'>REGISTER</a> -->
-            <?php 
-                if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true) {
-                    echo"
-                        <div>
-                            WELCOME, $_SESSION[username]! - <a class='btn btn-danger' href='../logout.php' role='button'>LOGOUT</a>
-                        </div>
-                    ";
-                }
-                else {
-                    echo"
-                    <!-- login button start -->
-                    <div class='sign-in-up'>
-                        <!-- <button type='button' class='btn btn-secondary'>LOGIN</button> -->
-                        <a class='btn btn-secondary' data-bs-toggle='modal' href='#exampleModalToggle' role='button'>LOGIN</a>
-                        <form action='register.php'>
-                            <button class='btn btn-secondary'>REGISTER</button>
-                        </form>
-                    </div>
-                    <!-- login button end -->
-                    ";
-                }
-            ?>
-        </header>
-
+        <?php include "./includes/navbar.php" ?>
         <div class="container">
             <h2 class="text-center m-5">Admin Page</h2>
 
@@ -142,7 +55,7 @@
                                     <input type="password" class="form-control" id="floatingPassword0" placeholder="Password" name="password" required>
                                     <label for="floatingPassword0">Password</label>
                                 </div>
-
+                                
                                 <div class="selectmenu form-floating mb-3">
                                     <select class="form-select" aria-label="Floating label select example" id="selection" name="useradmin" onchange="selectOption()" required>
                                         <option value="Selection" selected>Open this select menu</option>
@@ -187,7 +100,7 @@
             </div>
             <!-- Modal to insert/update/delete the data end -->
 
-            <div class="table-responsive">
+            <div class="table-responsive mt-5 mb-5 ">
                 <table id="example" class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -226,41 +139,26 @@
                                         <td><?php echo $row['user_name']; ?></td>
                                         <td><?php echo $row['email']; ?></td>
                                         <!-- <td><?php // echo $row['password']; ?></td> -->
-                                        <!-- <td><?php // echo $row['re_password']; ?></td> -->
                                         <td><?php echo $row['user_type']; ?></td>
                                         <td><?php echo $row['company_name']; ?></td>
                                         <td><?php echo $row['business_type']; ?></td>
                                         <!-- <td><?php // echo $row['verification_code']; ?></td> -->
                                         <!-- <td><button class='btn <?php // echo $class ?>'><?php // echo $status ?></button></td> -->
-                                        <td><?php echo $row['is_verified']; ?></td>
+                                        <!-- <td><?php // echo $row['is_verified']; ?></td> -->
+                                        <?php 
+                                            $verified_status = $row['is_verified'];
+                                            if ($verified_status == 0) {
+                                                $ver_status = "No";
+                                            } else if ($verified_status == 1) {
+                                                $ver_status = "Yes";
+                                            }
+                                            echo "<td>".$ver_status."</td>";
+                                        ?>
                                         <td>
                                             <a class="btn btn-info mb-1" href="admin_update.php?id=<?php echo $row['id']; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;
-                                            <a class='btn btn-danger' data-bs-toggle='modal' href='#static' role='button'><i class="far fa-trash-alt"></i></a>
+                                            <!-- <a class='btn btn-danger' data-bs-toggle='modal' href='#static' role='button'><i class="far fa-trash-alt"></i></a> -->
                                         </td>
                                     </tr>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-center" id="staticBackdropLabel">Are you sure, you want to delete the record mentioned below?</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Firstname: <span class="badge bg-secondary"><?php echo $row['first_name']; ?></span></p>
-                                                <p>Lastname: <span class="badge bg-secondary"><?php echo $row['last_name']; ?></span></p>
-                                                <p>Username: <span class="badge bg-secondary"><?php echo $row['user_name']; ?></span></p>
-                                                <p>Email: &emsp;&emsp; <span class="badge bg-secondary"><?php echo $row['email']; ?></span></p>
-                                                <p>User type: <span class="badge bg-secondary"><?php echo $row['user_type']; ?></span></p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a class="btn btn-danger" href="admin_delete.php?id=<?php echo $row['id']; ?>">Delete</i></a> 
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <?php 
                                     $i++;
@@ -271,12 +169,6 @@
                 </table>
             </div>
         </div>
-
-        <?php 
-            // if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true) {
-            //     echo"<div class='d-flex justify-content-center'><h1 class='m-5 center'>WELCOME, $_SESSION[username]!</h1></div>";
-            // }
-        ?>
 
         <!-- DataTable Plugin Script -->
         <script>

@@ -1,5 +1,5 @@
 <?php 
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php"; 
+    include "../../connection.php"; 
     session_start();
 ?>
 
@@ -39,6 +39,17 @@
                     <label for='formFile' class='form-label'>Upload the topic image</label>
                     <input class='form-control' type='file' id='formFile' name='file'>
                 </div>
+                <dic class='form-group'>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="buyLease" id="inlineRadio1" value="Purchase">
+                        <label class="form-check-label" for="inlineRadio1">Purchase</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="buyLease" id="inlineRadio2" value="Lease">
+                        <label class="form-check-label" for="inlineRadio2">Lease</label>
+                    </div>
+                </dic>
+
                 <div class='row mb-3 mt-5'>
                     <div class='col'>
                         <!-- <a href='#' type='submit' role='button' class='btn btn-primary w-100' name='save' id='prev-2' value='SAVE'>Previous</a> -->
@@ -64,14 +75,14 @@
 
         move_uploaded_file($tmp, '../images/'.$name);
 
-        $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `topic`, `description`, `image`) VALUES ('$_POST[company_name]','$_POST[business_type]','$_POST[topic]','$_POST[description]','$name')";
+        $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `topic`, `description`, `image`, `buy_lease`) VALUES ('$_POST[company_name]','$_POST[business_type]','$_POST[topic]','$_POST[description]','$name', '$_POST[buyLease]')";
         $res = mysqli_query($con, $sql);
 
         if($res == 1) {
             echo "
                 <script>
                     alert('Data inserted Successfully!!!');
-                    window.location.href = 'faq01.php';
+                    window.location.href = 'faq01.php?topic=$_POST[topic]&option=$_POST[buyLease]';
                 </script>
             ";
         }

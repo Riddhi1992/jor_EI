@@ -53,6 +53,10 @@
                                     <input type="password" class="form-control" id="floatingPassword0" placeholder="Password" name="password" required>
                                     <label for="floatingPassword0">Password</label>
                                 </div>
+                                <!-- <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword1" placeholder="Password" name="repassword" required>
+                                    <label for="floatingPassword1">Re-enter Password</label>
+                                </div> -->
 
                                 <div class="selectmenu form-floating mb-3">
                                     <select class="form-select" aria-label="Floating label select example" id="selection" name="useradmin" onchange="selectOption()" required>
@@ -121,6 +125,7 @@
                             if($result->num_rows>0) {
                                 $i = 1;
                                 while($row = $result->fetch_assoc()) { 
+                                    if(!($row['user_type'] == 'Owner') && !($row['user_type'] == 'Admin')) {
                                     // $last_status = 'Offline';
                                     // $class = "btn-danger";
                                     // if($row['last_login']>$time) {
@@ -168,6 +173,7 @@
 
                                     <?php 
                                     $i++;
+                                            }
                                 }
                             }
                         ?>

@@ -91,7 +91,7 @@
                 $verification_code = $_POST['verification_code'];
                 $password = $_POST['password'];
 
-                $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='',`user_name`='$user_name',`email`='$email',`password`='$password',`re_password`='$password',`business_type`='', `user_type`='$user_type',`verification_code`='$verification_code'  WHERE `id`=$id";
+                $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='', `user_type`='$user_type',`verification_code`='$verification_code'  WHERE `id`=$id";
                 $result = $con->query($query);
 
                 if($result == TRUE) {
@@ -109,3 +109,55 @@
         ?>
     </body>
 </html>
+
+
+<!-- 
+    <div class='container border pt-4 pb-4'>
+                                <div class='d-flex justify-content-center'>
+                                    <div class='row w-75'>
+                                        <div class='col border rounded'>
+                                            <p class='mt-3'>First Name: <span>$firstname</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='row justify-content-center'>
+                                    <div class='col-2 border rounded'>
+                                        <p class='mt-3'>Last Name</p>
+                                    </div>
+                                    <div class='col-6 border rounded'>
+                                        <p class='mt-3'>$lastname</p>
+                                    </div>
+                                </div>
+                                <div class='row justify-content-center'>
+                                    <div class='col-2 border rounded'>
+                                        <p class='mt-3'>Username</p>
+                                    </div>
+                                    <div class='col-6 border rounded'>
+                                        <p class='mt-3'>$user_name</p>
+                                    </div>
+                                </div>
+                                <div class='row justify-content-center'>
+                                    <div class='col-2 border rounded'>
+                                        <p class='mt-3'>Email</p>
+                                    </div>
+                                    <div class='col-6 border rounded'>
+                                        <p class='mt-3'>$email</p>
+                                    </div>
+                                </div>
+                                <div class='row justify-content-center'>
+                                    <div class='col-2 border rounded'>
+                                        <p class='mt-3'>Password</p>
+                                    </div>
+                                    <div class='col-6 border rounded'>
+                                        <p class='mt-3' type='password' id='myPass'>";
+                                            ?>
+                                            <?php 
+                                            // foreach($chars as $char) {
+                                                // $char = '*';
+                                                // echo "$char";
+                                            // }
+                                            // echo "
+                            //             </p>
+                            //         </div>
+                            //     </div>
+                            // </div> -->

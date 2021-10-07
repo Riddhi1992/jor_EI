@@ -1,5 +1,5 @@
 <?php 
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+    include "../connection.php";
     session_start();
 ?>
 
@@ -59,33 +59,43 @@
 
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                ['Company Name - Topic', 'Users #'],
+                ['Company Name - Topic', 'Users #', { role: 'style' }],
                 <?php 
                     $query = "SELECT * FROM `client_data`";
                     $result = mysqli_query($con, $query);
 
+                    $sql = "SELECT `id`, `company_name`, `user_name` FROM `registered_users` WHERE `user_name`='$_SESSION[username]' ";
+                    $res = mysqli_query($con, $sql);
+                    $row_data = mysqli_fetch_array($res);
+
                     while($row = mysqli_fetch_array($result)) {
-                        $companyName = $row['company_name'];
-                        $topic = $row['topic'];
-                        $visitorCounter = $row['visitor_counter'];
+                        if($row_data['company_name'] == $row['company_name']) {
+                            $companyName = $row['company_name'];
+                            $topic = $row['topic'];
+                            $visitorCounter = $row['visitor_counter'];
                 ?>
-                ['<?php echo $companyName; echo " - "; echo $topic;?>', <?php echo $visitorCounter; ?>],
+                ['<?php echo $companyName; echo " - "; echo $topic;?>', <?php echo $visitorCounter; ?>, 'color: #e5e4e2'],
                 <?php
+                        }
                     }
                 ?>
                 ]);
 
                 var options = {
-                chart: {
-                    title: 'Company Performance',
-                    subtitle: 'No. of times User visited the Topic',
-                },
-                bars: 'vertical'
+                    chart: {
+                        title: 'Company Performance',
+                        subtitle: 'No. of times User visited the Topic',
+                    },
+                    bars: 'vertical',
+                    chartArea: {
+                        // color: 'red'
+                    }
                 };
 
                 var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-                chart.draw(data, google.charts.Bar.convertOptions(options));
+                // chart.draw(data, google.charts.Bar.convertOptions(options));
+                chart.draw(data, options);
             }
         </script>
     </body>

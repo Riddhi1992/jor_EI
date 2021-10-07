@@ -1,5 +1,5 @@
 <?php 
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+    include "../connection.php";
     session_start();
 ?>
 <!DOCTYPE html>
@@ -102,7 +102,7 @@
                 $verification_code = $_POST['verification_code'];
                 $password = $_POST['password'];
 
-                $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$company_name',`user_name`='$user_name',`email`='$email',`password`='$password',`re_password`='$password',`business_type`='$business_type', `user_type`='$user_type',`verification_code`='$verification_code'  WHERE `id`=$id";
+                $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$company_name',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='$business_type', `user_type`='$user_type',`verification_code`='$verification_code'  WHERE `id`=$id";
                 $result = $con->query($query);
 
                 if($result == TRUE) {

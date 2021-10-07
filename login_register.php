@@ -22,12 +22,12 @@
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'example@gmail.com';                     //SMTP username
-            $mail->Password   = 'Example';                               //SMTP password
+            $mail->Password   = 'example!@#';                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom('example@gmail.com', 'Example');
+            $mail->setFrom('example@gmail.com', 'example');
             $mail->addAddress($email);               //Name is optional
 
             // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
@@ -82,7 +82,7 @@
                             }
                             else if ($result_fetch['user_type']=="Admin") {
                                 $_SESSION['UID'] = $result_fetch['id'];
-                                header("location: ./admin/admin_view.php");
+                                header("location: ./admin/dashboard02.php");
                                 die();
                             }
                             else {
@@ -163,6 +163,8 @@
                 // No one has taken username or email
                 // $password=password_hash($_POST['password'], PASSWORD_BCRYPT);
                 $password=$_POST['password'];
+                // $repassword=password_hash($_POST['repassword'], PASSWORD_BCRYPT);
+                // $repassword=$_POST['repassword'];
                 $reset_token = bin2hex(random_bytes(16));
                 date_default_timezone_set('America/Los_Angeles');
                 $date = date("Y-m-d");

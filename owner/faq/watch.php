@@ -1,7 +1,6 @@
 <?php 
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+    include "../../connection.php"; 
     session_start();
-
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,5 @@
-<?php
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+<?php 
+    include "../../connection.php"; 
     session_start();
 ?>
 
@@ -20,6 +20,16 @@
     // session_start();
     // $result = $con->query($query);
 
+    // echo "
+    //     <script>
+    //         alert('$_SESSION[username]');
+    //     </script>
+    // ";            
+
+    $sql = "SELECT `id`, `company_name`, `user_name` FROM `registered_users` WHERE `user_name`='$_SESSION[username]' ";
+    $res = mysqli_query($con, $sql);
+    $row_data = mysqli_fetch_array($res);
+
     $query = "SELECT * FROM `client_data`";
 
     $query_run = mysqli_query($con, $query);
@@ -31,42 +41,52 @@
 
     if($query_run) {
         while($row = mysqli_fetch_array($query_run)) {
-            $image = $row['image'];
-            $status = $row['status'];
-            $id = $row['id'];
-            $visitor_counter = $row['visitor_counter'];
-            $class = 'btn-primary';
-            if ($status == 1) {
-                $strstatus = "<a class='text-white text-decoration-none' href=activeProgram.php?userID=".$row['id']."&topic=".$row['topic'].">Active</a>";
-                $class = 'btn-success';
-            } else if ($status == 0) {
-                $strstatus = "<a class='text-white text-decoration-none' href=nonActiveProgram.php?userID=".$row['id']."&topic=".$row['topic'].">Non-Active</a>";
-                $class = 'btn-danger';
-            }
+            if($row_data['company_name'] == $row['company_name']) {
+                $image = $row['image'];
+                $status = $row['status'];
+                $public_private = $row['public_private'];
+                $id = $row['id'];
+                $visitor_counter = $row['visitor_counter'];
+                $class = 'btn-primary';
+                if ($status == 1) {
+                    $strstatus = "<a class='text-white text-decoration-none' href=nonActiveProgram.php?userID=".$row['id']."&topic=".$row['topic'].">Deactivate</a>";
+                    $class = 'btn-danger';
+                } else if ($status == 0) {
+                    $strstatus = "<a class='text-white text-decoration-none' href=activeProgram.php?userID=".$row['id']."&topic=".$row['topic'].">Activate</a>";
+                    $class = 'btn-success';
+                }
+                if ($public_private == 'Private') {
+                    $pri_pub = "<a class='text-white text-decoration-none' data-toggle='tooltip' title='Make it Public' data-placement='bottom' href=public.php?id=".$row['id']."><i class='fas fa-lock'></i></a>";
 
-            if($status == 1) {
-                echo "
-                    <div class='col gap-3 m-3'>
-                        <div class='card h-100 shadow' style='width: 20rem;'>
-                            <a href='' class='p-3'>
-                                <img src='../images/$image' class='card-img-top shadow' style='height: 200px;' alt='...'>
-                            </a>    
-                            <div class=card-body m-3'>
-                                <a class='h4' href='view_data.php?id=$row[id]&topic=$row[topic]'>$row[topic]</a>&nbsp;
-                                <p class='card-text'>$row[description]</p>
-                                <p>Created By: <span class='text-primary'>$row[company_name]</span></p>
-                                <p>Created on: <span class='text-primary'>$row[date_inserted]</span></p>
-                                <button class='btn btn-primary'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&topic=$row[topic]&visCon=$visitor_counter'>Edit <i class='far fa-edit'></i></a></button>&nbsp;
-                                <button class='btn btn-primary'><a class='text-light text-decoration-none' href='#'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
-                                <button class='btn $class'>$strstatus</button>&nbsp;
-                                <p class='mt-2'>User visited # <span class='badge bg-primary'>$row[visitor_counter]</span></p>
+                } else if ($public_private == 'Public') {
+                    $pri_pub = "<a class='text-white text-decoration-none' data-toggle='tooltip' title='Make it Private' data-placement='bottom' href=private.php?id=".$row['id']."><i class='fas fa-lock-open'></i></a>";
+                }
+
+                if($status == 1) {
+                    echo "
+                        <div class='col gap-3 m-3'>
+                            <div class='card h-100 shadow' style='width: 20rem;'>
+                                <a href='' class='p-3'>
+                                    <img src='../images/$image' class='card-img-top shadow' style='height: 200px;' alt='...'>
+                                </a>    
+                                <div class=card-body m-3'>
+                                    <a class='h4' href='view_data.php?id=$row[id]&topic=$row[topic]'>$row[topic]</a>&nbsp;
+                                    <button class='btn btn-secondary float-end'>$pri_pub</button>&nbsp;
+                                    <p class='card-text'>$row[description]</p>
+                                    <p>Created By: <span class='text-primary'>$row[company_name]</span></p>
+                                    <p>Created on: <span class='text-primary'>$row[date_inserted]</span></p>
+                                    <button class='btn btn-primary'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&topic=$row[topic]&visCon=$visitor_counter&option=$row[buy_lease]'>Edit <i class='far fa-edit'></i></a></button>&nbsp;
+                                    <button class='btn btn-primary'><a class='text-light text-decoration-none' href='#'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
+                                    <button class='btn $class'>$strstatus</button>&nbsp;
+                                    <p class='mt-2'>User visited # <span class='badge bg-primary'>$row[visitor_counter]</span></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ";
-            }
+                    ";
+                }
 
-            
+                
+            }
         }
     }
 
@@ -74,50 +94,7 @@
             </div>
         </div>
     ";
-    // if($query_run) {
-    //     $j = 1;
-    //     while($row = mysqli_fetch_array($query_run)) {
-    //         $id = $row['id'];
-    //         $ans1 = $row['ans1'];
-    //         $ans2 = $row['ans2'];
-    //         echo "
-    //             <tr>
-    //                 <th scope='row'>$j</th>
-    //                 <td>$row[ques1]</td>
-    //                 <td>$row[ans1]</td>
-    //                 <td><a href='watch.php?id=$id'>".$ans1."</a></td>
-    //                 <td>$row[date_inserted]</td>
-    //                 <td><a class='btn btn-info mb-1' href='faq_update.php?id=$row[id]'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>
-    //             </tr>                
-    //         ";
-    //         $j++;
-    //         echo "
-    //             <tr>
-    //                 <th scope='row'>$j</th>
-    //                 <td>$row[ques2]</td>
-    //                 <td>$row[ans2]</td>
-    //                 <td><a href='watch.php?id=$id'>".$ans2."</a></td>
-    //                 <td>$row[date_inserted]</td>
-    //                 <td><a class='btn btn-info mb-1' href='faq_update.php?id=$row[id]'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>
-    //             </tr>
-    //         ";
-    //     }
-    // }
-    // else {
-    //     echo"
-    //         <script>
-    //             alert('No record found!');
-    //             window.location.href = 'faq.php';
-    //         </script>
-    //     ";
-    // }
-
-    // echo "
-    //                 </tbody>
-    //             </table>
-    //         </div>
-    //     </div>
-    // ";
+    
 
 ?>
 

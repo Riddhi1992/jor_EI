@@ -9,6 +9,7 @@
         $user_name = $_POST['user_name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        // $repassword = $_POST['repassword'];
         $useradmin = $_POST['useradmin'];
         $companyname = $_POST['companyname'];
         $selection = $_POST['selection'];
@@ -45,6 +46,7 @@
                 $user_name = $row['user_name'];
                 $email = $row['email'];
                 $password = $row['password'];
+                // $repassword = $row['re_password'];
                 $useradmin = $row['user_type'];
                 $companyname = $row['company_name'];
                 $selection = $row['business_type'];
@@ -87,6 +89,10 @@
                                 <input type="password" class="form-control" id="floatingPassword0" placeholder="Password" name="password" value="<?php echo $password; ?>" required>
                                 <label for="floatingPassword0">Password</label>
                             </div>
+                            <!-- <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword1" placeholder="Password" name="repassword" value="<?php // echo $repassword; ?>" required>
+                                <label for="floatingPassword1">Re-enter Password</label>
+                            </div> -->
 
                             <div class="selectmenu form-floating mb-3">
                                 <select class="form-select" aria-label="Floating label select example" id="selection" name="useradmin" value="<?php echo $useradmin; ?>" onchange="selectOption()" required>

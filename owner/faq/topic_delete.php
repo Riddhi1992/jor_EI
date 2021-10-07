@@ -1,5 +1,5 @@
-<?php
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+<?php 
+    include "../../connection.php"; 
     session_start();
 ?>
 
@@ -11,7 +11,7 @@
         $result = $con->query($query);
 
         if($result) {
-            $query = "DELETE FROM `client_data` WHERE `id`=$id";
+            $query = "UPDATE `client_data` SET `is_deleted`='1' WHERE `id`='$id'";
             $result = $con->query($query);
 
             if ($result) {

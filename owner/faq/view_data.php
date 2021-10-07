@@ -1,5 +1,5 @@
-<?php
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+<?php 
+    include "../../connection.php"; 
     session_start();
 ?>
 
@@ -21,15 +21,17 @@
 
 <?php 
 
-    if(isset($_GET['topic']) && $_GET['id']) {
+    if(isset($_GET['topic']) && $_GET['id'] && $_GET['option']) {
         $topic = $_GET['topic'];
+        $option = $_GET['option'];
         $id = $_GET['id'];
 
-        $query = "SELECT * FROM `client_data` WHERE `topic` = '$topic'";
+        $query = "SELECT * FROM `client_data` WHERE `topic` = '$topic' AND `buy_lease`='$option'";
         $result = mysqli_query($con, $query);
 
         if($result) {
             $row = mysqli_fetch_array($result);
+            // $option = $row['buy_lease'];
 
             echo "
                 <div class='container'>
@@ -59,9 +61,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques1]&ans=$row[ans1]'>$row[ans1]</a></td>
                                     <td>$row[date1]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques1]&ans=$row[ans1]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq01.php?id=$row[id]&topic=$row[topic]&ques=$row[ques1]&ans=$row[ans1]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static1' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques1]&ans=$row[ans1]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq01.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques1]&ans=$row[ans1]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static1' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>         
                                 <tr>
@@ -71,9 +73,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques2]&ans=$row[ans2]'>$row[ans2]</a></td>
                                     <td>$row[date2]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques2]&ans=$row[ans2]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq02.php?id=$row[id]&topic=$row[topic]&ques=$row[ques2]&ans=$row[ans2]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static2' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques2]&ans=$row[ans2]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq02.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques2]&ans=$row[ans2]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static2' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
 
                                 </tr>          
@@ -84,9 +86,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques3]&ans=$row[ans3]'>$row[ans3]</a></td>
                                     <td>$row[date3]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques3]&ans=$row[ans3]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq03.php?id=$row[id]&topic=$row[topic]&ques=$row[ques3]&ans=$row[ans3]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static3' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques3]&ans=$row[ans3]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq03.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques3]&ans=$row[ans3]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static3' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -96,9 +98,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques4]&ans=$row[ans4]'>$row[ans4]</a></td>
                                     <td>$row[date4]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques4]&ans=$row[ans4]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq04.php?id=$row[id]&topic=$row[topic]&ques=$row[ques4]&ans=$row[ans4]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static4' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques4]&ans=$row[ans4]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq04.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques4]&ans=$row[ans4]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static4' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -108,9 +110,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques5]&ans=$row[ans5]'>$row[ans5]</a></td>
                                     <td>$row[date5]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques5]&ans=$row[ans5]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq05.php?id=$row[id]&topic=$row[topic]&ques=$row[ques5]&ans=$row[ans5]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static5' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques5]&ans=$row[ans5]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq05.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques5]&ans=$row[ans5]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static5' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -120,9 +122,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques6]&ans=$row[ans6]'>$row[ans6]</a></td>
                                     <td>$row[date6]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques6]&ans=$row[ans6]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq06.php?id=$row[id]&topic=$row[topic]&ques=$row[ques6]&ans=$row[ans6]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static6' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques6]&ans=$row[ans6]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq06.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques6]&ans=$row[ans6]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static6' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -132,9 +134,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques7]&ans=$row[ans7]'>$row[ans7]</a></td>
                                     <td>$row[date7]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques7]&ans=$row[ans7]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq07.php?id=$row[id]&topic=$row[topic]&ques=$row[ques7]&ans=$row[ans7]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static7' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques7]&ans=$row[ans7]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq07.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques7]&ans=$row[ans7]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static7' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -144,9 +146,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques8]&ans=$row[ans8]'>$row[ans8]</a></td>
                                     <td>$row[date8]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques8]&ans=$row[ans8]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq08.php?id=$row[id]&topic=$row[topic]&ques=$row[ques8]&ans=$row[ans8]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static8' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques8]&ans=$row[ans8]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq08.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques8]&ans=$row[ans8]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static8' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -156,9 +158,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques9]&ans=$row[ans9]'>$row[ans9]</a></td>
                                     <td>$row[date9]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques9]&ans=$row[ans9]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq09.php?id=$row[id]&topic=$row[topic]&ques=$row[ques9]&ans=$row[ans9]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static9' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques9]&ans=$row[ans9]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq09.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques9]&ans=$row[ans9]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static9' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -168,9 +170,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques10]&ans=$row[ans10]'>$row[ans10]</a></td>
                                     <td>$row[date10]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques10]&ans=$row[ans10]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq10.php?id=$row[id]&topic=$row[topic]&ques=$row[ques10]&ans=$row[ans10]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static10' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques10]&ans=$row[ans10]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq10.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques10]&ans=$row[ans10]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static10' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -180,9 +182,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques11]&ans=$row[ans11]'>$row[ans11]</a></td>
                                     <td>$row[date11]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques11]&ans=$row[ans11]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq11.php?id=$row[id]&topic=$row[topic]&ques=$row[ques11]&ans=$row[ans11]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static11' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques11]&ans=$row[ans11]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq11.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques11]&ans=$row[ans11]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static11' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>         
                                 <tr>
@@ -192,9 +194,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques12]&ans=$row[ans12]'>$row[ans12]</a></td>
                                     <td>$row[date12]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques12]&ans=$row[ans12]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq12.php?id=$row[id]&topic=$row[topic]&ques=$row[ques12]&ans=$row[ans12]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static12' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques12]&ans=$row[ans12]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq12.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques12]&ans=$row[ans12]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static12' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
 
                                 </tr>          
@@ -205,9 +207,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques13]&ans=$row[ans13]'>$row[ans13]</a></td>
                                     <td>$row[date13]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques13]&ans=$row[ans13]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq13.php?id=$row[id]&topic=$row[topic]&ques=$row[ques13]&ans=$row[ans13]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static13' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques13]&ans=$row[ans13]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq13.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques13]&ans=$row[ans13]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static13' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -217,9 +219,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques14]&ans=$row[ans14]'>$row[ans14]</a></td>
                                     <td>$row[date14]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques14]&ans=$row[ans14]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq14.php?id=$row[id]&topic=$row[topic]&ques=$row[ques14]&ans=$row[ans14]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static14' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques14]&ans=$row[ans14]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq14.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques14]&ans=$row[ans14]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static14' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -229,9 +231,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques15]&ans=$row[ans15]'>$row[ans15]</a></td>
                                     <td>$row[date15]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques15]&ans=$row[ans15]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq15.php?id=$row[id]&topic=$row[topic]&ques=$row[ques15]&ans=$row[ans15]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static15' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques15]&ans=$row[ans15]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq15.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques15]&ans=$row[ans15]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static15' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -241,9 +243,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques16]&ans=$row[ans16]'>$row[ans16]</a></td>
                                     <td>$row[date16]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques16]&ans=$row[ans16]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq16.php?id=$row[id]&topic=$row[topic]&ques=$row[ques16]&ans=$row[ans16]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static16' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques16]&ans=$row[ans16]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq16.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques16]&ans=$row[ans16]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static16' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -253,9 +255,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques17]&ans=$row[ans17]'>$row[ans17]</a></td>
                                     <td>$row[date17]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques17]&ans=$row[ans17]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq17.php?id=$row[id]&topic=$row[topic]&ques=$row[ques17]&ans=$row[ans17]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static17' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques17]&ans=$row[ans17]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq17.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques17]&ans=$row[ans17]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static17' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -265,9 +267,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques18]&ans=$row[ans18]'>$row[ans18]</a></td>
                                     <td>$row[date18]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques18]&ans=$row[ans18]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq18.php?id=$row[id]&topic=$row[topic]&ques=$row[ques18]&ans=$row[ans18]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static18' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques18]&ans=$row[ans18]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq18.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques18]&ans=$row[ans18]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static18' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -277,9 +279,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques19]&ans=$row[ans19]'>$row[ans19]</a></td>
                                     <td>$row[date19]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques19]&ans=$row[ans19]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq19.php?id=$row[id]&topic=$row[topic]&ques=$row[ques19]&ans=$row[ans19]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static19' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques19]&ans=$row[ans19]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq19.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques19]&ans=$row[ans19]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static19' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                                 <tr>
@@ -289,9 +291,9 @@
                                     <td><a href='watch.php?id=$id&topic=$topic&ques=$row[ques20]&ans=$row[ans20]'>$row[ans20]</a></td>
                                     <td>$row[date20]</td>
                                     <td>
-                                        <a class='btn btn-success mb-1' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques20]&ans=$row[ans20]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
-                                        <a class='btn btn-primary mb-1' href='faq20.php?id=$row[id]&topic=$row[topic]&ques=$row[ques20]&ans=$row[ans20]'><i class='fa fa-plus'></i></a>
-                                        <a class='btn btn-danger mb-1' data-bs-toggle='modal' href='#static20' role='button'><i class='far fa-trash-alt'></i></a>
+                                        <a class='btn btn-success mb-1' data-toggle='tooltip' title='Update' data-placement='bottom' href='faq_update.php?id=$row[id]&topic=$row[topic]&ques=$row[ques20]&ans=$row[ans20]'><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                                        <a class='btn btn-primary mb-1' data-toggle='tooltip' title='Add New' data-placement='bottom' href='faq20.php?id=$row[id]&topic=$row[topic]&option=$option&ques=$row[ques20]&ans=$row[ans20]'><i class='fa fa-plus'></i></a>
+                                        <a class='btn btn-danger mb-1' data-toggle='tooltip' title='Delete' data-placement='bottom' data-bs-toggle='modal' href='#static20' role='button'><i class='far fa-trash-alt'></i></a>
                                     </td>
                                 </tr>          
                             </tbody>

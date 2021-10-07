@@ -1,7 +1,7 @@
 <?php 
-    include "/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/connection.php";
+    include "../../connection.php"; 
     session_start();
-    // $result = $con->query($query);
+    
     $sql = "SELECT * FROM `owner_datas`";
     $res = mysqli_query($con, $sql);
 
