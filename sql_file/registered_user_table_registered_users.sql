@@ -28,7 +28,7 @@ CREATE TABLE `registered_users` (
 
 INSERT INTO `registered_users` (`id`, `first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `created`, `verification_code`, `is_verified`, `resettoken`, `resettokenexpire`) VALUES
 (9, 'User01', 'User01', '', 'user_01', 'patelriddhi01992@gmail.com', '1234', '', 'User', '2021-08-05', '', 1, NULL, NULL),
-(10, 'Owner01', 'owner01', 'ABC', 'owner_01', 'riddhi@drhologram.com', '12345', 'Restaurant', 'Owner', '2021-08-05', '', 1, NULL, NULL),
+(10, 'Owner01', 'owner01', 'ABC', 'owner_01', 'riddhi@drhologram.com', '12345', 'Realtor', 'Owner', '2021-08-05', '', 1, NULL, NULL),
 (12, 'User02', 'user02', '', 'user_02', 'r.patel.241@westcliff.edu', 'user_02', '', 'User', '2021-08-05', '175479b9d8519cee9b72e94fa854582f', 1, NULL, NULL),
 (13, 'Admin_02', 'Admin02', '', 'admin_02', 'admin@gmail.com', 'admin_02', '', 'Admin', '2021-08-06', 'b54cd52e5fbe6a525b94071270473c28', 1, NULL, NULL),
 (20, 'owner02', 'owner', 'XYZ', 'Owner02', 'riddhipatel.csu@gmail.com', '123456', 'Restaurant', 'Owner', '2021-09-09', '1086edcd32c82c9cabd3d411a97524eb', 1, NULL, NULL),

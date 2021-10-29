@@ -38,7 +38,7 @@
                 $ques11 = $row['ques19'];
                 $ques11 = $row['ques20'];
                 $visCon = $row['visitor_counter'];
-                $topic = $row['topic'];
+                $address = $row['address'];
 
                 // for ($i=1; $i <=20; $i++) {
                 //     if($ques == $ques[$i]) {
@@ -49,7 +49,7 @@
                 //             echo "
                 //                 <script>
                 //                     alert('First question updated');
-                //                     window.location.href = 'view_data.php?id=$row[id]&topic=$row[topic]';
+                //                     window.location.href = 'view_data.php?id=$row[id]&address=$row[address]';
                 //                 </script>
                 //             ";
                 //         }
@@ -64,7 +64,7 @@
                         echo "
                             <script>
                                 alert('First question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -77,7 +77,7 @@
                         echo "
                             <script>
                                 alert('Second question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -90,7 +90,7 @@
                         echo "
                             <script>
                                 alert('Third question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -103,7 +103,7 @@
                         echo "
                             <script>
                                 alert('Fourth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -116,7 +116,7 @@
                         echo "
                             <script>
                                 alert('Fifth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -129,7 +129,7 @@
                         echo "
                             <script>
                                 alert('Sixth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -142,7 +142,7 @@
                         echo "
                             <script>
                                 alert('Seventh question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -155,7 +155,7 @@
                         echo "
                             <script>
                                 alert('Eight question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -168,7 +168,7 @@
                         echo "
                             <script>
                                 alert('Ninth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -181,7 +181,7 @@
                         echo "
                             <script>
                                 alert('Tenth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -194,7 +194,7 @@
                         echo "
                             <script>
                                 alert('Eleventh question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -207,7 +207,7 @@
                         echo "
                             <script>
                                 alert('Twelfth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -220,7 +220,7 @@
                         echo "
                             <script>
                                 alert('Thirteenth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -233,7 +233,7 @@
                         echo "
                             <script>
                                 alert('Fourteenth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -246,7 +246,7 @@
                         echo "
                             <script>
                                 alert('Fifteenth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -259,7 +259,7 @@
                         echo "
                             <script>
                                 alert('Sixteenth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -272,7 +272,7 @@
                         echo "
                             <script>
                                 alert('Seventeenth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -285,7 +285,7 @@
                         echo "
                             <script>
                                 alert('Eighteenth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -298,7 +298,7 @@
                         echo "
                             <script>
                                 alert('Nineteenth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -311,7 +311,7 @@
                         echo "
                             <script>
                                 alert('Twentieth question updated');
-                                window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$option';
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$option';
                             </script>
                         ";
                     }
@@ -338,9 +338,9 @@
 
     }
 
-    if(isset($_GET['id']) && ($_GET['ques']) && ($_GET['ans']) && ($_GET['topic'])) {
+    if(isset($_GET['id']) && ($_GET['ques']) && ($_GET['ans']) && ($_GET['address'])) {
         $user_id = $_GET['id'];
-        $topic = $_GET['topic'];
+        $address = $_GET['address'];
         $ques = $_GET['ques'];
         $ans = $_GET['ans'];
 
@@ -370,8 +370,51 @@
                                 <label for="floatingInput10">ID</label>
                             </div>
                             <div class='form-floating mb-3'>
-                                <input type='text' class='form-control' id='floatingInput0' placeholder='Question' name='question' value='<?php echo $ques; ?>' required>
-                                <label for='floatingInput0'>Question</label>
+                                <input type='text' class='form-control' id='floatingInput0' placeholder='Question' name='question' value='<?php echo $ques; ?>' disabled>
+                                <label for='floatingInput0'>Initial Question</label>
+                            </div>
+                            <div class="selectmenu form-floating mb-3">
+                                <?php 
+                                    if(isset($_GET['option'])){
+                                        $option = $_GET['option'];
+
+                                        if ($option == 'Purchase') {
+                                            $sql = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option'";
+                                            $result = mysqli_query($con, $sql);
+                                            if($result) {
+                                                echo "
+                                                    <select class='form-select' aria-label='Floating label select example' id='selection' name='question' onchange='selectOption()' required>
+                                                ";
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    echo "
+                                                        <option value='$row[question]'>$row[question]</option>
+                                                    ";
+                                                }
+                                                echo "
+                                                    </select>
+                                                ";
+                                            }
+                                        }
+                                        else {
+                                            $sql = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option'";
+                                            $result = mysqli_query($con, $sql);
+                                            if($result) {
+                                                echo "
+                                                    <select class='form-select' aria-label='Floating label select example' id='selection' name='question' onchange='selectOption()' required>
+                                                ";
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    echo "
+                                                        <option value='$row[question]'>$row[question]</option>
+                                                    ";
+                                                }
+                                                echo "
+                                                    </select>
+                                                ";
+                                            }
+                                        }
+                                    }
+                                ?>           
+                                <label for="floatingSelect">Question</label>
                             </div>
                             <div class='mb-3'>
                                 <label for='formFile' class='form-label' >Upload your Video here</label>
@@ -385,7 +428,8 @@
                         </form>
                     </div>
                 </div>
-                <script src="./popup_script.js"></script>
+                <?php include "./includes/footer.php" ?>
+                <!-- <script src="./popup_script.js"></script> -->
             </body>
         </html>
 

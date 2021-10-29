@@ -24,6 +24,11 @@
             <!-- <h2 class="m-4">Dr. Hologram</h2> -->
         <!-- </div> -->
         </div>
+        <div class="container-fluid d-flex justify-content-center" id="header_bg">
+            <p id="headerDesc02">
+                Disrupting Simulation and Telemedicine with Holographic & AI Sciences For Improved Healthcare Outcomes
+            </p>
+        </div>
         <!-- Header start -->
         <header class="container-fluid">    
             <!-- Nav start -->
@@ -38,11 +43,13 @@
                             <li class="nav-item">
                                 <a class="nav-link active text-white" aria-current="page" href="index.php"><span>Home <i class="fas fa-home"></i></span></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item navHide">
                                 <!-- <a class="nav-link" href="#">Home</a> -->
+                                <a class='nav-link text-white ' data-bs-toggle='modal' href='#exampleModalToggle'>Login</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item navHide">
                                 <!-- <a class="nav-link" href="#">Home</a> -->
+                                <a class='nav-link text-white' href='register.php'>Register</a>
                             </li>
                         </ul>
                     </div>

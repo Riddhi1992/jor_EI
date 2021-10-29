@@ -24,7 +24,7 @@
                     <label for='input'>ID</label>
                 </div>
                 <div class="selectmenu form-floating mb-3">
-                    <select class="form-select" aria-label="Floating label select example" id="selection" name="question2" onchange="selectOption()" required>
+                    <select class="form-select" aria-label="Floating label select example" id="selection" name="question" onchange="selectOption()" required>
                         <option value="Selection" selected>Select second question</option>
                         <?php 
                             if(isset($_GET['option']) || $_GET['id']){
@@ -89,7 +89,7 @@
                         $result = mysqli_query($con, $query);
                         $row_data = mysqli_fetch_array($result);
 
-                        if(isset($_GET['id']) && $_GET['topic']) {
+                        if(isset($_GET['id']) && $_GET['address']) {
                             echo "
                                 <div class='col'></div>  
                                 <div class='col'></div>  
@@ -125,14 +125,16 @@
             </div>                            
         </form>
     </div>
+    <?php include "./includes/footer.php" ?>
     <!-- <script type="text/javascript" src="./includes/nextPrev.js"></script> -->
 </body>
 </html>
 
 
 <?php 
-    if(isset($_POST['save']) && $_GET['topic'] && $_GET['option']) {
-        $topic = $_GET['topic'];
+
+    if(isset($_POST['save']) && $_GET['property_type'] && $_GET['option']) {
+        $property_type = $_GET['property_type'];
         $option = $_GET['option'];
         $query2 = "SELECT * FROM `client_data` WHERE `ques2` IS NULL AND `ans2` IS NULL";
         $result2 = mysqli_query($con, $query2);
@@ -143,23 +145,30 @@
             $tmp = $_FILES['file']['tmp_name'];
             move_uploaded_file($tmp, '../videos/'.$name);
 
-            $sql = "UPDATE `client_data` SET `ques2`='$_POST[question2]',`ans2`='$name', `topic_ques02`=CONCAT('$topic', ' - q2'), `date2`=NOW() WHERE `ques2` IS NULL ORDER BY id DESC LIMIT 1";
-            $res = mysqli_query($con, $sql);
+            $key_sql = "SELECT * FROM `option_Selection` WHERE `question`='$_POST[question]'";
+            $key_res = mysqli_query($con, $key_sql);
+            $key_row = mysqli_fetch_array($key_res);
+            $keyword = $key_row['keywords'];
 
-            if($res) {
-                echo"
-                    <script>
-                        alert('Second Question updated successfully!');
-                        window.location.href = 'faq03.php?topic=$topic&option=$option';
-                    </script>
-                ";
+            if($key_res){
+                $sql = "UPDATE `client_data` SET `ques2`='$_POST[question]',`ans2`='$name', `topic_ques02`=CONCAT('$option', ' - ', '$keyword'), `date2`=NOW() WHERE `ques2` IS NULL ORDER BY id DESC LIMIT 1";
+                $res = mysqli_query($con, $sql);
+
+                if($res) {
+                    echo"
+                        <script>
+                            alert('Second Question updated successfully!');
+                            window.location.href = 'faq03.php?property_type=$property_type&option=$option';
+                        </script>
+                    ";
+                }
             }
         }        
     }
 
     if(isset($_POST['update'])) {
-        if(isset($_GET['id']) && $_GET['topic'] && $_GET['option']) {
-            $topic = $_GET['topic'];
+        if(isset($_GET['id']) && $_GET['address'] && $_GET['option']) {
+            $address = $_GET['address'];
             $id = $_GET['id'];
             $opt = $_GET['option'];
 
@@ -172,17 +181,24 @@
                 $name = $_FILES['file']['name'];
                 $tmp = $_FILES['file']['tmp_name'];
                 move_uploaded_file($tmp, '../videos/'.$name);
-    
-                $sql = "UPDATE `client_data` SET `ques2`='$_POST[question2]',`ans2`='$name', `topic_ques02`=CONCAT('$topic', ' - q2'), `date2`=NOW() WHERE `topic`='$topic'";
-                $res = mysqli_query($con, $sql);
-            
-                if($res) {
-                    echo"
-                        <script>
-                            alert('Second Question added successfully!');
-                            window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$opt';
-                        </script>
-                    ";
+
+                $key_sql = "SELECT * FROM `option_Selection` WHERE `question`='$_POST[question]'";
+                $key_res = mysqli_query($con, $key_sql);
+                $key_row = mysqli_fetch_array($key_res);
+                $keyword = $key_row['keywords'];
+
+                if($key_res){
+                    $sql = "UPDATE `client_data` SET `ques2`='$_POST[question]',`ans2`='$name', `topic_ques02`=CONCAT('$opt', ' - ', '$keyword'), `date2`=NOW() WHERE `id`='$id'";
+                    $res = mysqli_query($con, $sql);
+                
+                    if($res) {
+                        echo"
+                            <script>
+                                alert('Second Question added successfully!');
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$opt';
+                            </script>
+                        ";
+                    }
                 }
             }    
         }   

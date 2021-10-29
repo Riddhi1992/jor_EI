@@ -53,6 +53,7 @@
             </div>
         </div>
     </div>
+    <?php include "./includes/footer.php" ?>
     <script type="text/javascript">
             google.charts.load('current', {'packages':['bar']});
             google.charts.setOnLoadCallback(drawChart);
@@ -71,7 +72,7 @@
                     while($row = mysqli_fetch_array($result)) {
                         if($row_data['company_name'] == $row['company_name']) {
                             $companyName = $row['company_name'];
-                            $topic = $row['topic'];
+                            $topic = $row['property_type'];
                             $visitorCounter = $row['visitor_counter'];
                 ?>
                 ['<?php echo $companyName; echo " - "; echo $topic;?>', <?php echo $visitorCounter; ?>, 'color: #e5e4e2'],

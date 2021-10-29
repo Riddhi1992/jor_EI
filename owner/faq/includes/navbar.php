@@ -25,6 +25,11 @@
             <!-- <h2 class="m-4">Dr. Hologram</h2> -->
         <!-- </div> -->
         </div>
+        <div class="container-fluid d-flex justify-content-center" id="header_bg">
+            <p id="headerDesc02">
+                Disrupting Simulation and Telemedicine with Holographic & AI Sciences For Improved Healthcare Outcomes
+            </p>
+        </div>
         <!-- Header start -->
         <header class="container-fluid">    
             <!-- Nav start -->
@@ -103,7 +108,7 @@
                 if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true) {
                     echo"
                         <div>
-                            <span>WELCOME, $_SESSION[username]!</span> - <a class='btn text-white' id='logoutBtn' href='/LoginSystem/logout.php' role='button'>LOGOUT</a>
+                            <span>WELCOME, $_SESSION[username]!</span> - <a class='btn text-white' id='logoutBtn' href='../../logout.php' role='button'>LOGOUT</a>
                         </div>
                     ";
                 }

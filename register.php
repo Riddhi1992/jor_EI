@@ -46,9 +46,9 @@
                             <div class="selectmenu form-floating mb-3">
                                 <select class="form-select" aria-label="Floating label select example" id="selection" name="useradmin" onchange="selectOption()" required>
                                     <option value="Selection" selected>Open this select menu</option>
-                                    <option value="User">User</option>
+                                    <!-- <option value="User">User</option> -->
                                     <option value="Owner">Owner</option>
-                                    <option value="Admin">Admin</option>
+                                    <!-- <option value="Admin">Admin</option> -->
                                     
                                 </select>
                                 <label for="floatingSelect">Type of User</label>
@@ -61,8 +61,8 @@
                                 <div class="form-floating mb-3">
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="selection" onchange="selectBusiness()">
                                         <option selected>Open this select menu</option>
-                                        <option value="Medical">Medical</option>
-                                        <option value="Education">Education</option>
+                                        <option value="Medical">Realtor</option>
+                                        <!-- <option value="Education">Medical</option> -->
                                         <option value="Other">Other</option>
                                     </select>
                                     <label for="floatingSelect">Types of Business</label>

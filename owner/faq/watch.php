@@ -15,9 +15,9 @@
 
 <?php
 
-    if(isset($_GET['id']) && $_GET['topic'] && $_GET['ques'] && $_GET['ans']) {
+    if(isset($_GET['id']) && $_GET['address'] && $_GET['ques'] && $_GET['ans']) {
         $id = $_GET['id'];
-        $topic = $_GET['topic'];
+        $address = $_GET['address'];
         $ques = $_GET['ques'];
         $ans = $_GET['ans'];
 
@@ -68,222 +68,226 @@
         $ans20 = $row['ans20'];
         
 
-        if ($row['ques1'] == $ques && $row['topic'] == $topic && $row['ans1'] == $ans) {    
+        if ($row['ques1'] == $ques && $row['address'] == $address && $row['ans1'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques1</h3>
                 <h4 class='text-center'>You are watching $ans1</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans1' type='video'>
+                        <source src='../videos/$ans1' type='video/mp4'>
+                        <source src='../videos/$ans1' type='video/wmv'>
+                        <source src='../videos/$ans1' type='video/ogg'>
+                        <source src='../videos/$ans1' type='video/webm'>
+                        <source src='../videos/$ans1' type='video/quicktime'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques2'] == $ques && $row['topic'] == $topic && $row['ans2'] == $ans) {    
+        else if ($row['ques2'] == $ques && $row['address'] == $address && $row['ans2'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques2</h3>
                 <h4 class='text-center'>You are watching $ans2</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans2' type='video'>
+                        <source src='../videos/$ans2' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques3'] == $ques && $row['topic'] == $topic && $row['ans3'] == $ans) {    
+        else if ($row['ques3'] == $ques && $row['address'] == $address && $row['ans3'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques3</h3>
                 <h4 class='text-center'>You are watching $ans3</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans3' type='video'>
+                        <source src='../videos/$ans3' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques4'] == $ques && $row['topic'] == $topic && $row['ans4'] == $ans) {    
+        else if ($row['ques4'] == $ques && $row['address'] == $address && $row['ans4'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques4</h3>
                 <h4 class='text-center'>You are watching $ans4</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans4' type='video'>
+                        <source src='../videos/$ans4' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques5'] == $ques && $row['topic'] == $topic && $row['ans5'] == $ans) {    
+        else if ($row['ques5'] == $ques && $row['address'] == $address && $row['ans5'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques5</h3>
                 <h4 class='text-center'>You are watching $ans5</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans5' type='video'>
+                        <source src='../videos/$ans5' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques6'] == $ques && $row['topic'] == $topic && $row['ans6'] == $ans) {    
+        else if ($row['ques6'] == $ques && $row['address'] == $address && $row['ans6'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques6</h3>
                 <h4 class='text-center'>You are watching $ans6</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans6' type='video'>
+                        <source src='../videos/$ans6' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques7'] == $ques && $row['topic'] == $topic && $row['ans7'] == $ans) {    
+        else if ($row['ques7'] == $ques && $row['address'] == $address && $row['ans7'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques7</h3>
                 <h4 class='text-center'>You are watching $ans7</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans7' type='video'>
+                        <source src='../videos/$ans7' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques8'] == $ques && $row['topic'] == $topic && $row['ans8'] == $ans) {    
+        else if ($row['ques8'] == $ques && $row['address'] == $address && $row['ans8'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques8</h3>
                 <h4 class='text-center'>You are watching $ans8</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans8' type='video'>
+                        <source src='../videos/$ans8' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques9'] == $ques && $row['topic'] == $topic && $row['ans9'] == $ans) {    
+        else if ($row['ques9'] == $ques && $row['address'] == $address && $row['ans9'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques9</h3>
                 <h4 class='text-center'>You are watching $ans9</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans9' type='video'>
+                        <source src='../videos/$ans9' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques10'] == $ques && $row['topic'] == $topic && $row['ans10'] == $ans) {    
+        else if ($row['ques10'] == $ques && $row['address'] == $address && $row['ans10'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques10</h3>
                 <h4 class='text-center'>You are watching $ans10</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans10' type='video'>
+                        <source src='../videos/$ans10' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques11'] == $ques && $row['topic'] == $topic && $row['ans11'] == $ans) {    
+        else if ($row['ques11'] == $ques && $row['address'] == $address && $row['ans11'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques11</h3>
                 <h4 class='text-center'>You are watching $ans11</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans11' type='video'>
+                        <source src='../videos/$ans11' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques12'] == $ques && $row['topic'] == $topic && $row['ans12'] == $ans) {    
+        else if ($row['ques12'] == $ques && $row['address'] == $address && $row['ans12'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques12</h3>
                 <h4 class='text-center'>You are watching $ans12</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans12' type='video'>
+                        <source src='../videos/$ans12' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques13'] == $ques && $row['topic'] == $topic && $row['ans13'] == $ans) {    
+        else if ($row['ques13'] == $ques && $row['address'] == $address && $row['ans13'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques13</h3>
                 <h4 class='text-center'>You are watching $ans13</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans13' type='video'>
+                        <source src='../videos/$ans13' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques14'] == $ques && $row['topic'] == $topic && $row['ans14'] == $ans) {    
+        else if ($row['ques14'] == $ques && $row['address'] == $address && $row['ans14'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques14</h3>
                 <h4 class='text-center'>You are watching $ans14</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans14' type='video'>
+                        <source src='../videos/$ans14' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques15'] == $ques && $row['topic'] == $topic && $row['ans15'] == $ans) {    
+        else if ($row['ques15'] == $ques && $row['address'] == $address && $row['ans15'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques15</h3>
                 <h4 class='text-center'>You are watching $ans15</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans15' type='video'>
+                        <source src='../videos/$ans15' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques16'] == $ques && $row['topic'] == $topic && $row['ans16'] == $ans) {    
+        else if ($row['ques16'] == $ques && $row['address'] == $address && $row['ans16'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques16</h3>
                 <h4 class='text-center'>You are watching $ans16</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans16' type='video'>
+                        <source src='../videos/$ans16' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques17'] == $ques && $row['topic'] == $topic && $row['ans17'] == $ans) {    
+        else if ($row['ques17'] == $ques && $row['address'] == $address && $row['ans17'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques17</h3>
                 <h4 class='text-center'>You are watching $ans17</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans17' type='video'>
+                        <source src='../videos/$ans17' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques18'] == $ques && $row['topic'] == $topic && $row['ans18'] == $ans) {    
+        else if ($row['ques18'] == $ques && $row['address'] == $address && $row['ans18'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques18</h3>
                 <h4 class='text-center'>You are watching $ans18</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans18' type='video'>
+                        <source src='../videos/$ans18' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques19'] == $ques && $row['topic'] == $topic && $row['ans19'] == $ans) {    
+        else if ($row['ques19'] == $ques && $row['address'] == $address && $row['ans19'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques19</h3>
                 <h4 class='text-center'>You are watching $ans19</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans19' type='video'>
+                        <source src='../videos/$ans19' type='video/mp4'>
                     </video>
                 </div>
             ";        
         }
-        else if ($row['ques20'] == $ques && $row['topic'] == $topic && $row['ans20'] == $ans) {    
+        else if ($row['ques20'] == $ques && $row['address'] == $address && $row['ans20'] == $ans) {    
             echo"
                 <h3 class='text-center mt-5'>FAQ: $ques20</h3>
                 <h4 class='text-center'>You are watching $ans20</h4>
                 <div class='d-flex justify-content-center m-5'>
                     <video width='615' height='315' class='shadow-lg rounded' controls>
-                        <source src='../videos/$ans20' type='video'>
+                        <source src='../videos/$ans20' type='video/mp4'>
                     </video>
                 </div>
             ";        
@@ -296,3 +300,4 @@
     }
 
 ?>
+<?php include "./includes/footer.php" ?>

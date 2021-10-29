@@ -106,12 +106,7 @@
                         $result = mysqli_query($con, $query);
                         $row_data = mysqli_fetch_array($result);
 
-                        if(isset($_GET['id']) && $_GET['topic']) {
-                            echo"
-                                <script>
-                                    alert('$_SESSION[username]');
-                                </script>
-                            ";
+                        if(isset($_GET['id']) && $_GET['address']) {
                             echo "
                                 <div class='col'></div>  
                                 <div class='col'></div>  
@@ -148,14 +143,21 @@
             </div>                            
         </form>
     </div>
+    <?php include "./includes/footer.php" ?>
     <!-- <script type="text/javascript" src="./includes/nextPrev.js"></script> -->
 </body>
 </html>
 
 
 <?php 
-    if(isset($_POST['save']) && $_GET['topic'] && $_GET['option']) {
-        $topic = $_GET['topic'];
+
+    $key_sql = "SELECT * FROM `option_Selection` WHERE `question`='$_POST[question]'";
+    $key_res = mysqli_query($con, $key_sql);
+    $key_row = mysqli_fetch_array($key_res);
+    $keyword = $key_row['keywords'];
+
+    if(isset($_POST['save']) && $_GET['property_type'] && $_GET['option']) {
+        $property_type = $_GET['property_type'];
         $option = $_GET['option'];
         $query = "SELECT * FROM `client_data` WHERE `ques12` IS NULL AND `ans12` IS NULL";
         $result = mysqli_query($con, $query);
@@ -166,23 +168,25 @@
             $tmp = $_FILES['file']['tmp_name'];
             move_uploaded_file($tmp, '../videos/'.$name);
 
-            $sql = "UPDATE `client_data` SET `ques12`='$_POST[question]',`ans12`='$name',`topic_ques12`=CONCAT('$topic', ' - q12'), `date12`=NOW() WHERE `ques12` IS NULL ORDER BY id DESC LIMIT 1";
-            $res = mysqli_query($con, $sql);
-        
-            if($res) {
-                echo"
-                    <script>
-                        alert('Twelfth Question updated successfully!');
-                        window.location.href = 'faq13.php?topic=$topic&option=$option';
-                    </script>
-                ";
+            if($key_res) {
+                $sql = "UPDATE `client_data` SET `ques12`='$_POST[question]',`ans12`='$name',`topic_ques12`=CONCAT('$option', ' - ', '$keyword'), `date12`=NOW() WHERE `ques12` IS NULL ORDER BY id DESC LIMIT 1";
+                $res = mysqli_query($con, $sql);
+            
+                if($res) {
+                    echo"
+                        <script>
+                            alert('Twelfth Question updated successfully!');
+                            window.location.href = 'faq13.php?property_type=$property_type&option=$option';
+                        </script>
+                    ";
+                }
             }
         }    
     }
 
     if(isset($_POST['update'])) {
-        if(isset($_GET['id']) && $_GET['topic'] && $_GET['option']) {
-            $topic = $_GET['topic'];
+        if(isset($_GET['id']) && $_GET['address'] && $_GET['option']) {
+            $address = $_GET['address'];
             $id = $_GET['id'];
             $opt = $_GET['option'];
 
@@ -195,17 +199,19 @@
                 $name = $_FILES['file']['name'];
                 $tmp = $_FILES['file']['tmp_name'];
                 move_uploaded_file($tmp, '../videos/'.$name);
-    
-                $sql = "UPDATE `client_data` SET `ques12`='$_POST[question]',`ans12`='$name',`topic_ques12`=CONCAT('$topic', ' - q12'), `date12`=NOW() WHERE `topic`='$topic'";
-                $res = mysqli_query($con, $sql);
-            
-                if($res) {
-                    echo"
-                        <script>
-                            alert('Twelfth Question added successfully!');
-                            window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$opt';
-                        </script>
-                    ";
+
+                if($key_res) {
+                    $sql = "UPDATE `client_data` SET `ques12`='$_POST[question]',`ans12`='$name',`topic_ques12`=CONCAT('$opt', ' - ', '$keyword'), `date12`=NOW() WHERE `id`='$id'";
+                    $res = mysqli_query($con, $sql);
+                
+                    if($res) {
+                        echo"
+                            <script>
+                                alert('Twelfth Question added successfully!');
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$opt';
+                            </script>
+                        ";
+                    }
                 }
             }    
         }   

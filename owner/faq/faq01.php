@@ -25,14 +25,8 @@
                 </div>
                 <div class="selectmenu form-floating mb-3">
                         <?php 
-                            if(isset($_GET['option']) || $_GET['id']){
+                            if(isset($_GET['option'])){
                                 $option = $_GET['option'];
-                                $id = $_GET['id'];
-
-                                $idQuery = "SELECT * FROM `client_data` WHERE `id`='$id'";
-                                $idRes = mysqli_query($con, $idQuery);
-                                $idRow = mysqli_fetch_assoc($idRes);
-                                // $q1 = $idRow['ques1'];
 
                                 if ($option == 'Purchase') {
                                     $sql = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option'";
@@ -86,12 +80,7 @@
                         $result = mysqli_query($con, $query);
                         $row_data = mysqli_fetch_array($result);
 
-                        if(isset($_GET['id']) && $_GET['topic']) {
-                            echo"
-                                <script>
-                                    alert('$_SESSION[username]');
-                                </script>
-                            ";
+                        if(isset($_GET['id']) && $_GET['address']) {
                             echo "
                                 <div class='col'></div>  
                                 <div class='col'></div>  
@@ -129,6 +118,7 @@
             </div>
         </form>
     </div>
+    <?php include "./includes/footer.php" ?>
     <script>
 
     </script>
@@ -136,8 +126,9 @@
 </html>
 
 <?php 
-    if(isset($_POST['save']) && $_GET['topic'] && $_GET['option']) {
-        $topic = $_GET['topic'];
+
+    if(isset($_POST['save']) && $_GET['property_type'] && $_GET['option']) {
+        $property_type = $_GET['property_type'];
         $option = $_GET['option'];
         $query = "SELECT * FROM `client_data` WHERE `ques1` IS NULL AND `ans1` IS NULL";
         $result = mysqli_query($con, $query);
@@ -148,27 +139,34 @@
             $tmp = $_FILES['file']['tmp_name'];
             move_uploaded_file($tmp, '../videos/'.$name);
 
-            $sql = "UPDATE `client_data` SET `ques1`='$_POST[question]',`ans1`='$name', `topic_ques01`=CONCAT('$topic', ' - q1'), `date1`=NOW() WHERE `ques1` IS NULL ORDER BY id DESC LIMIT 1";
-            $res = mysqli_query($con, $sql);
+            $key_sql = "SELECT * FROM `option_Selection` WHERE `question`='$_POST[question]'";
+            $key_res = mysqli_query($con, $key_sql);
+            $key_row = mysqli_fetch_array($key_res);
+            $keyword = $key_row['keywords'];
 
-            if($res) {
-                echo"
-                    <script>
-                        alert('First Question updated successfully!');
-                        window.location.href = 'faq02.php?topic=$topic&option=$option&ques=$_POST[question]';
-                    </script>
-                ";
+            if($key_res){
+                $sql = "UPDATE `client_data` SET `ques1`='$_POST[question]',`ans1`='$name', `topic_ques01`=CONCAT('$option', ' - ', '$keyword'), `date1`=NOW() WHERE `ques1` IS NULL ORDER BY id DESC LIMIT 1";
+                $res = mysqli_query($con, $sql);
+
+                if($res) {
+                    echo"
+                        <script>
+                            alert('First Question updated successfully!');
+                            window.location.href = 'faq02.php?property_type=$property_type&option=$option&ques=$_POST[question]';
+                        </script>
+                    ";
+                }
             }
         }        
     }
 
     if(isset($_POST['update'])) {
-        if(isset($_GET['id']) && $_GET['topic'] && $_GET['option']) {
-            $topic = $_GET['topic'];
+        if(isset($_GET['id']) && $_GET['address'] && $_GET['option']) {
+            $address = $_GET['address'];
             $id = $_GET['id'];
             $opt = $_GET['option'];
 
-            $query = "SELECT * FROM `client_data` WHERE `ques5` IS NULL AND `id`='$id'";
+            $query = "SELECT * FROM `client_data` WHERE `ques1` IS NULL AND `id`='$id'";
             $result = mysqli_query($con, $query);
             $row = mysqli_fetch_array($result);
             $visCon = $row['visitor_counter'];
@@ -177,20 +175,27 @@
                 $name = $_FILES['file']['name'];
                 $tmp = $_FILES['file']['tmp_name'];
                 move_uploaded_file($tmp, '../videos/'.$name);
-    
-                $sql = "UPDATE `client_data` SET `ques1`='$_POST[question]',`ans1`='$name', `topic_ques01`=CONCAT('$topic', ' - q1'), `date1`=NOW() WHERE `topic`='$topic'";
-                // $sql1 = "ALTER TABLE client_data CHANGE `date1` `date1` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
-                $res = mysqli_query($con, $sql);
-                // $res1 = mysqli_query($con, $sql1);
-            
-                if($res ) {
-                    echo"
-                        <script>
-                            alert('First Question added successfully!');
-                            window.location.href = 'view_data.php?id=$id&topic=$topic&visCon=$visCon&option=$opt';
-                        </script>
-                    ";
+
+                $key_sql = "SELECT * FROM `option_Selection` WHERE `question`='$_POST[question]'";
+                $key_res = mysqli_query($con, $key_sql);
+                $key_row = mysqli_fetch_array($key_res);
+                $keyword = $key_row['keywords'];
+                
+                if($key_res) {
+                    $sql = "UPDATE `client_data` SET `ques1`='$_POST[question]',`ans1`='$name', `topic_ques01`=CONCAT('$opt', ' - ', '$keyword'), `date1`=NOW() WHERE `id`='$id'";
+                    $res = mysqli_query($con, $sql);
+                
+                    if($res ) {
+                        echo"
+                            <script>
+                                alert('First Question added successfully!');
+                                window.location.href = 'view_data.php?id=$id&address=$address&visCon=$visCon&option=$opt';
+                            </script>
+                        ";
+                    }
                 }
+
+                
             }    
         }   
     }
