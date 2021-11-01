@@ -10,9 +10,9 @@
     <?php include "./includes/navbar.php" ?>
         <h3 class="text-center m-3">Frequently Asked Questions</h3>
 
-        <div class="count text-center">00</div>
+        <!-- <div class="count text-center">00</div> -->
 
-        <?php include "./includes/cookies.js.php"?>
+        <?php // include "./includes/cookies.js.php"?>
 
         <!-- DataTable Plugin Script -->
         <script>

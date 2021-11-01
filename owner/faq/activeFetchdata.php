@@ -73,6 +73,7 @@
                                     <p>Created on: <span class='text-primary'>$row[date_inserted]</span></p>
                                     <button class='btn btn-primary'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]'>Edit <i class='far fa-edit'></i></a></button>&nbsp;
                                     <button class='btn btn-primary'><a class='text-light text-decoration-none' href='#'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
+                                    <button class='btn btn-primary'><a class='text-light text-decoration-none' href='visitor_counter.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
                                     <button class='btn $class'>$strstatus</button>&nbsp;
                                     <button name='publish' class='btn btn-secondary mt-2'><a class='text-light text-decoration-none' href='publish.php?id=$row[id]&address=$row[address]'>Publish</a></button>&nbsp;
                                     <p class='mt-2'>User visited # <span class='badge bg-primary'>$row[visitor_counter]</span></p>
