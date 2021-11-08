@@ -15,7 +15,7 @@
         $id = $_GET['id'];
         $address = $_GET['address'];
 
-        if($res && sendMail($first_name, $last_name, $email, $address)) {
+        if($res && sendMail($first_name, $last_name, $email, $address, $con)) {
             // echo "
                 // <script>
                 //     alert('Email sent');
@@ -28,7 +28,7 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    function sendMail($first_name, $last_name, $email, $address) {
+    function sendMail($first_name, $last_name, $email, $address, $con) {
         require("../../PHPMailer/Exception.php");
         require("../../PHPMailer/SMTP.php");
         require("../../PHPMailer/PHPMailer.php");
@@ -58,12 +58,12 @@
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'example@gmail.com';                     //SMTP username
-            $mail->Password   = 'example';                               //SMTP password
+            $mail->Password   = 'example!@#';                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom('example@gmail.com', 'example');  // email and name
+            $mail->setFrom('example@gmail.com', 'Example');
             // $mail->addAddress($email);               //Name is optional
 
             $mail->addAddress($email);     //Add a recipient
@@ -79,12 +79,26 @@
             // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
             if($mail->send()) {
-                echo "
-                    <script>
-                        alert('Email sent!');
-                        window.location.href = 'activeFetchdata.php';
-                    </script>
-                ";
+                $query = "SELECT * FROM `registered_users` WHERE `user_name` = '$_SESSION[username]'";
+                $result = mysqli_query($con, $query);
+                $row_data = mysqli_fetch_array($result);
+
+                if($row_data['user_type'] == 'Admin') {
+                    echo "
+                        <script>
+                            alert('Email sent!');
+                            window.location.href = '../../admin/activeFetchdata.php';
+                        </script>
+                    ";    
+                }
+                else {
+                    echo "
+                        <script>
+                            alert('Email sent!');
+                            window.location.href = 'activeFetchdata.php';
+                        </script>
+                    ";
+                }
             } else {
                 echo "
                     <script>
