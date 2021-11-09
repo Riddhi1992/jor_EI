@@ -80,11 +80,11 @@
                                 $_SESSION['UID'] = $result_fetch['id'];
                                 header("location: ./owner/dashboard01.php");
                             }
-                            // else if ($result_fetch['user_type']=="Admin") {
-                            //     $_SESSION['UID'] = $result_fetch['id'];
-                            //     header("location: ./admin/dashboard02.php");
-                            //     die();
-                            // }
+                            else if ($result_fetch['user_type']=="Admin") {
+                                $_SESSION['UID'] = $result_fetch['id'];
+                                header("location: ./admin/dashboard02.php");
+                                die();
+                            }
                             else {
                                 header("location: index.php");
                             }
