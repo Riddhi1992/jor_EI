@@ -15,7 +15,7 @@
 
     <div class="container m-5 mx-auto">
         <div class="row">
-            <div class="col gap-3 m-3">
+            <!-- <div class="col gap-3 m-3">
                 <div class="card shadow" style="width: 20rem;">
                     <a href="owner_view.php" class="p-3">
                         <img src="../images/UserDetailPage.png" class="card-img-top shadow" style="height: 200px;" alt="...">
@@ -26,7 +26,7 @@
                         <a href="owner_view.php" class="btn btn-primary">User data</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col gap-3 m-3">
                 <div class="card shadow" style="width: 20rem;">
                     <a href="./faq/faq.php" class="p-3">

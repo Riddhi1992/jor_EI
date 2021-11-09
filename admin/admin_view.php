@@ -169,7 +169,9 @@
                 </table>
             </div>
         </div>
-
+        
+        <?php include "./includes/footer.php" ?>
+        
         <!-- DataTable Plugin Script -->
         <script>
             $(document).ready(function() {

@@ -132,6 +132,7 @@
                         </form>
                     </div>
                 </div>
+                <?php include "./includes/footer.php" ?>
                 <script src="./popup_script.js"></script>
             </body>
         </html>

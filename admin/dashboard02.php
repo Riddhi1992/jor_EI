@@ -54,6 +54,7 @@
             </div>
         </div>
     </div>
+    <?php include "./includes/footer.php" ?>
     <script type="text/javascript">
             google.charts.load('current', {'packages':['bar']});
             google.charts.setOnLoadCallback(drawChart);
