@@ -34,7 +34,7 @@
                     </a>    
                     <div class="card-body">
                         <h5 class="card-title text-primary">Start a Program</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">Using this page, you can start making new Program. You will also find the <span class="badge bg-secondary">Instruction</span> button to help you step by step to make a new program.</p>
                         <a href="./faq/faq.php" class="btn btn-primary">Start Program</a>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     </a>
                     <div class="card-body">
                         <h5 class="card-title text-primary">Active Topic</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">This page have all Active Programs listed. You can <span class="badge bg-primary">Edit</span> any of the program, <span class="badge bg-secondary">Publish</span> the program, and <span class="badge bg-danger">Deactivate</span> any program and then Delete it. </p>
                         <a href="./faq/activeFetchdata.php" class="btn btn-primary">Active topic view</a>
                     </div>
                 </div>
