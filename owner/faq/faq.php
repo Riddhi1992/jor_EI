@@ -26,6 +26,25 @@
         <h3 class="text-center m-3">START A Q&A</h3>
         <form method="POST" class="m-5" action="" enctype="multipart/form-data">
             <div id='first'>
+                <?php 
+                    $query_user = "SELECT * FROM `registered_users` WHERE `user_name`='$_SESSION[username]' ";
+                    $res1_user = mysqli_query($con, $query_user);
+                    $row_user = mysqli_fetch_array($res1_user);
+                    $userType = $row_user['user_type'];
+
+                    if($userType == 'Admin') {
+                        echo "
+                            <div class='form-floating mb-3'>
+                                <input type='text' class='form-control' id='companyName' placeholder='Company Name' name='companyName' required>
+                                <label for='companyName'>Company Name*</label>
+                            </div>            
+                            <div class='form-floating mb-3'>
+                                <input type='text' class='form-control' id='businessType' placeholder='Business Type' name='businessType' required>
+                                <label for='businessType'>Business Type*</label>
+                            </div>            
+                        ";
+                    }
+                ?>
                 <div class='form-floating mb-3'>
                     <input type='text' class='form-control' id='floatingInput1' placeholder='Property Address' name='address' required>
                     <label for='floatingInput1'>Property Address*</label>
@@ -110,28 +129,49 @@
         $company_name = $row_data['company_name'];
         $business_type = $row_data['business_type'];
 
-        if($res_user) {
-            $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `address`, `property_type`, `startDate`, `endDate`, `description`, `image`, `buy_lease`) 
-            VALUES ('$company_name','$business_type','$_POST[address]','$_POST[property_type]','$_POST[stdate]', '$_POST[endate]', '$_POST[description]','$name', '$_POST[buyLease]')";
-            $res = mysqli_query($con, $sql);
 
-            if($res == 1) {
-                echo "
-                    <script>
-                        alert('Data inserted Successfully!!!');
-                        window.location.href = 'faq_intro.php?property_type=$_POST[property_type]&option=$_POST[buyLease]';
-                        // window.location.href = 'faq_intro.php?property_type=$_POST[property_type]&option=$_POST[buyLease]';
-                    </script>
-                ";
+
+        if($res_user) {
+            if($userType == 'Admin') {
+                $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `address`, `property_type`, `startDate`, `endDate`, `description`, `image`, `buy_lease`) 
+                VALUES ('$_POST[companyName]','$_POST[businessType]','$_POST[address]','$_POST[property_type]','$_POST[stdate]', '$_POST[endate]', '$_POST[description]','$name', '$_POST[buyLease]')";
+                $res = mysqli_query($con, $sql);
+
+                if($res == 1) {
+                    echo "
+                        <script>
+                            alert('Data inserted Successfully!!!');
+                            window.location.href = 'faq_intro.php?property_type=$_POST[property_type]&option=$_POST[buyLease]';
+                            // window.location.href = 'faq_intro.php?property_type=$_POST[property_type]&option=$_POST[buyLease]';
+                        </script>
+                    ";
+                }
             }
             else {
-                echo "
-                    <script>
-                        // alert('Error');
-                        alert($res);
-                    </script>
-                ";
+                $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `address`, `property_type`, `startDate`, `endDate`, `description`, `image`, `buy_lease`) 
+                VALUES ('$company_name','$business_type','$_POST[address]','$_POST[property_type]','$_POST[stdate]', '$_POST[endate]', '$_POST[description]','$name', '$_POST[buyLease]')";
+                $res = mysqli_query($con, $sql);
+
+                if($res == 1) {
+                    echo "
+                        <script>
+                            alert('Data inserted Successfully!!!');
+                            window.location.href = 'faq_intro.php?property_type=$_POST[property_type]&option=$_POST[buyLease]';
+                            // window.location.href = 'faq_intro.php?property_type=$_POST[property_type]&option=$_POST[buyLease]';
+                        </script>
+                    ";
+                }
             }
+
+            
+            // else {
+            //     echo "
+            //         <script>
+            //             // alert('Error');
+            //             alert($res);
+            //         </script>
+            //     ";
+            // }
         }
 
     }
