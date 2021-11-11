@@ -72,6 +72,10 @@
                                         <label for="floatingInput2">Company Name</label>
                                     </div>
                                     <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingInput5" placeholder="Business type" name="selection">
+                                        <label for="floatingInput5">Type of Business (Ex. Realtor, Medical, etc.)</label>
+                                    </div>
+                                    <!-- <div class="form-floating mb-3">
                                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="selection" onchange="selectBusiness()">
                                             <option selected>Open this select menu</option>
                                             <option value="Medical">Medical</option>
@@ -85,7 +89,7 @@
                                             <input type="text" class="form-control" id="floatingInput5" placeholder="Business type" name="selection">
                                             <label for="floatingInput5">Type of Business</label>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div id="userActivities" style="display: none"></div>
 

@@ -109,6 +109,14 @@
                     //     ";   
                     // }
                 }
+                else {
+                    echo"
+                        <script>
+                            alert('Email not verified, please check your Email to verify.');
+                            window.location.href = 'index.php';
+                        </script>
+                    ";    
+                }
                 
             }
             else {
@@ -216,13 +224,13 @@
 
     if(mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        if ($row['status']==1) {
+        // if ($row['status']==1) {
             $_SESSION['IS_LOGIN'] = 'yes';
             $arr = array('status'=>'success');
-        }
-        else {
-            $arr = array('status'=>'wait', 'id'=>$row['id']);            
-        }
+        // }
+        // else {
+        //     $arr = array('status'=>'wait', 'id'=>$row['id']);            
+        // }
     }
     else {
         $arr = array('status'=>'error', 'msg'=>'Please enter valid login details');        
