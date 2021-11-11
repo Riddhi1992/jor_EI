@@ -58,25 +58,21 @@
                                     <input type="text" class="form-control" id="floatingInput2" placeholder="Company Name" name="companyname">
                                     <label for="floatingInput2">Company Name</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInput5" placeholder="Business type" name="selection">
-                                    <label for="floatingInput5">Type of Business (Ex. Realtor, Medical, etc.)</label>
-                                </div>
-                                <!-- <div class="form-floating mb-3">
+                                <div id="business" class="form-floating mb-3">
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="selection" onchange="selectBusiness()">
                                         <option selected>Open this select menu</option>
-                                        <option value="Medical">Realtor</option>
-                                        <option value="Education">Medical</option>
+                                        <option value="Realtor">Realtor</option>
+                                        <!-- <option value="Education">Medical</option> -->
                                         <option value="Other">Other</option>
                                     </select>
                                     <label for="floatingSelect">Types of Business</label>
                                 </div>
                                 <div id="otherBusiness" style="display: none">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingInput5" placeholder="Business type" name="selection">
+                                        <input type="text" class="form-control" name="selection1" id="floatingInput5" placeholder="Business type">
                                         <label for="floatingInput5">Type of Business</label>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                             <div id="userActivities" style="display: none"></div>
 

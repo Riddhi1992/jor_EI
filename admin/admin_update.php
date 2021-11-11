@@ -13,8 +13,16 @@
         $useradmin = $_POST['useradmin'];
         $companyname = $_POST['companyname'];
         $selection = $_POST['selection'];
+        $selection1 = $_POST['selection1'];
 
-        $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$companyname',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='$selection',`user_type`='$useradmin' WHERE `id`='$user_id'";
+        if($_POST['selection'] == 'Realtor') {
+            $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$companyname',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='$selection',`user_type`='$useradmin' WHERE `id`='$user_id'";
+        }
+        else {
+            $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$companyname',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='$selection1',`user_type`='$useradmin' WHERE `id`='$user_id'";
+        }
+
+        // $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$companyname',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='$selection',`user_type`='$useradmin' WHERE `id`='$user_id'";
 
         $result = $con->query($query);
 
@@ -107,25 +115,21 @@
                                     <input type="text" class="form-control" id="floatingInput2" placeholder="Company Name" name="companyname" value="<?php echo $companyname; ?>">
                                     <label for="floatingInput2">Company Name</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInput5" placeholder="Business type" name="selection">
-                                    <label for="floatingInput5">Type of Business (Ex. Realtor, Medical, etc.)</label>
-                                </div>
-                                <!-- <div class="form-floating mb-3">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="selection" value="<?php echo $selection; ?>" onchange="selectBusiness()">
+                                <div id="business" class="form-floating mb-3">
+                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="selection" onchange="selectBusiness()">
                                         <option selected>Open this select menu</option>
-                                        <option value="Medical">Medical</option>
-                                        <option value="Education">Education</option>
+                                        <option value="Realtor">Realtor</option>
+                                        <!-- <option value="Education">Medical</option> -->
                                         <option value="Other">Other</option>
                                     </select>
                                     <label for="floatingSelect">Types of Business</label>
                                 </div>
                                 <div id="otherBusiness" style="display: none">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingInput5" placeholder="Business type" name="selection" value="<?php echo $selection; ?>">
+                                        <input type="text" class="form-control" name="selection1" id="floatingInput5" placeholder="Business type">
                                         <label for="floatingInput5">Type of Business</label>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                             <div id="userActivities" style="display: none"></div>
 
@@ -137,7 +141,7 @@
                     </div>
                 </div>
                 <?php include "./includes/footer.php" ?>
-                <script src="./popup_script.js"></script>
+                <script src="../popup_script.js"></script>
             </body>
         </html>
 

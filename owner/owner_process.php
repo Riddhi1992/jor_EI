@@ -64,9 +64,15 @@
         $useradmin = $_POST['useradmin'];
         $companyname = $_POST['companyname'];
         $selection = $_POST['selection'];
+        $selection1 = $_POST['selection1'];
         $v_code = bin2hex(random_bytes(16));
 
-        $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `verification_code`, `is_verified`) VALUES ('$firstname','$lastname','$companyname','$user_name','$email','$password','$selection','$useradmin','$v_code','0')";
+        if($_POST['selection'] == 'Realtor') {
+            $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `verification_code`, `is_verified`) VALUES ('$firstname','$lastname','$companyname','$user_name','$email','$password','$selection','$useradmin','$v_code','0')";
+        }
+        else {
+            $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `verification_code`, `is_verified`) VALUES ('$firstname','$lastname','$companyname','$user_name','$email','$password','$selection1','$useradmin','$v_code','0')";
+        }
         
         // $result = $con->query($query);
 

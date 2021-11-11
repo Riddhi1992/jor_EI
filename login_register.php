@@ -178,8 +178,12 @@
                 $date = date("Y-m-d");
                 $v_code = bin2hex(random_bytes(16));
 
-                $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `verification_code`, `is_verified`, `resettoken`, `resettokenexpire`) 
-                VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$password','$_POST[selection]','$_POST[useradmin]','$v_code', '0', NULL, NULL)";
+                if($_POST['selection'] == 'Realtor') {
+                    $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `verification_code`, `is_verified`, `resettoken`, `resettokenexpire`) VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$password','$_POST[selection]','$_POST[useradmin]','$v_code', '0', NULL, NULL)";    
+                }
+                else {
+                    $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `verification_code`, `is_verified`, `resettoken`, `resettokenexpire`) VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$password','$_POST[selection1]','$_POST[useradmin]','$v_code', '0', NULL, NULL)";    
+                }
 
                 if(mysqli_query($con, $query) && sendMail($_POST['email'], $v_code)) {
                     // if data inserted successfully
