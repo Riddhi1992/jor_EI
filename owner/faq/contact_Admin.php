@@ -17,10 +17,10 @@
                         <input type="text" class="form-control" id="name" placeholder="name" name="name" required>
                         <label for="name">Name</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <!-- <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
                         <label for="floatingInput">Email address</label>
-                    </div>
+                    </div> -->
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="emailSubject" placeholder="name@example.com" name="emailSubject" required>
                         <label for="emailSubject">Subject Line</label>
@@ -47,9 +47,15 @@
 <?php 
     if(isset($_POST['send'])) {
         $name = mysqli_real_escape_string($con, $_POST['name']);
-        $email = mysqli_real_escape_string($con, $_POST['email']);
+        // $email = mysqli_real_escape_string($con, $_POST['email']);
         $emailSubject = mysqli_real_escape_string($con, $_POST['emailSubject']);
         $emailBody = mysqli_real_escape_string($con, $_POST['emailBody']);
+
+        $sql = "SELECT * FROM `registered_users` WHERE `user_name` = '$_SESSION[username]'";
+        $res = mysqli_query($con, $sql);
+        $row_data = mysqli_fetch_array($res);
+        $email = $row_data['email'];
+        $firstname = $row_data['first_name'];
 
         $name1 = $_FILES['file']['name'];
         $tmp = $_FILES['file']['tmp_name'];
@@ -57,21 +63,21 @@
         $query = "INSERT INTO `contact_us`(`name`, `email`, `emailSubject`, `emailBody`) VALUES ('$name','$email','$emailSubject','$emailBody')";
         $result = mysqli_query($con, $query);
 
-        if ($result && sendMail($name, $email, $emailSubject, $emailBody, $name1, $tmp)) {
+        if ($result && sendMail($name, $email, $emailSubject, $emailBody, $name1, $tmp, $firstname)) {
             echo "
                 <script>
-                    // alert('Data inserted successfully!');
                 </script>
             ";
         }
 
     }
 
+
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    function sendMail($name, $email, $emailSubject, $emailBody, $name1, $tmp) {
+    function sendMail($name, $email, $emailSubject, $emailBody, $name1, $tmp, $firstname) {
         require ("/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/PHPMailer/Exception.php");
         require ("/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/PHPMailer/SMTP.php");
         require ("/Applications/XAMPP/xamppfiles/htdocs/LoginSystem/PHPMailer/PHPMailer.php");
@@ -91,18 +97,17 @@
             //Server settings
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->Host       = 'p3plzcpnl447271.prod.phx3.secureserver.net';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'example@gmail.com';                     //SMTP username
-            $mail->Password   = 'example';                               //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Username   = 'example@realtor.drhologramsimulation.com';                     //SMTP username
+            $mail->Password   = 'Example';                               //SMTP password
+            $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom('example@gmail.com', 'example');   // email and name
-            $mail->addAddress($email);               //Name is optional
+            $mail->setFrom($email, $firstname);
 
-            $mail->addAddress($email, $name);     //Add a recipient
+            $mail->addAddress('example@realtor.drhologramsimulation.com', 'Dr. Hologram');     //Add a recipient
             // $mail->addReplyTo('info@example.com', 'Information');
             // $mail->addCC('cc@example.com');
             // $mail->addBCC('bcc@example.com');
@@ -132,6 +137,7 @@
                 echo "
                     <script>
                         alert('Email sent!');
+                        window.location.href = 'autoReply.php';
                     </script>
                 ";
             } else {
@@ -147,6 +153,7 @@
         }
     }
 
+    
     
 ?>
 
