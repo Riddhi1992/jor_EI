@@ -99,15 +99,15 @@
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'p3plzcpnl447271.prod.phx3.secureserver.net';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'example@realtor.drhologramsimulation.com';                     //SMTP username
-            $mail->Password   = 'Example';                               //SMTP password
+            $mail->Username   = 'isabel@realtor.drhologramsimulation.com';                     //SMTP username
+            $mail->Password   = 'DrHologramsimulation';                               //SMTP password
             $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
             $mail->setFrom($email, $firstname);
 
-            $mail->addAddress('example@realtor.drhologramsimulation.com', 'Dr. Hologram');     //Add a recipient
+            $mail->addAddress('isabel@realtor.drhologramsimulation.com', 'Dr. Hologram');     //Add a recipient
             // $mail->addReplyTo('info@example.com', 'Information');
             // $mail->addCC('cc@example.com');
             // $mail->addBCC('bcc@example.com');

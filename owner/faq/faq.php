@@ -47,11 +47,39 @@
                 ?>
                 <div class='form-floating mb-3'>
                     <input type='text' class='form-control' id='floatingInput1' placeholder='Property Address' name='address' required>
-                    <label for='floatingInput1'>Property Address*</label>
+                    <label for='floatingInput1'>Street Address*</label>
                 </div>
-                <div class='form-floating mb-3'>
+                <div class="row">
+                    <div class="col">
+                        <div class='form-floating mb-3'>
+                            <input type='text' class='form-control' id='city' placeholder='Property Address' name='city' required>
+                            <label for='city'>City*</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class='form-floating mb-3'>
+                            <input type='text' class='form-control' id='state' placeholder='Property Address' name='state' required>
+                            <label for='state'>State / Province / Region*</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class='form-floating mb-3'>
+                            <input type='text' class='form-control' id='zipcode' placeholder='Property Address' name='zipcode' required>
+                            <label for='zipcode'>Zip Code*</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class='form-floating mb-3'>
                     <input type='text' class='form-control' id='floatingInput2' placeholder='Business type' name='property_type' required>
                     <label for='floatingInput2'>Type of Property*</label>
+                </div> -->
+                <div class="selectmenu form-floating mb-3">
+                    <select class="form-select" aria-label="Floating label select example" id="selection" name="property_type" required>
+                        <option value="Selection" selected>Open this select menu</option>
+                        <option value="Single Family">Single Family</option>
+                        <option value="Town House">Town House</option>
+                    </select>
+                    <label for="floatingSelect">Type of Property*</label>
                 </div>
                 <!-- <div class='form-floating mb-3'>
                     <input type='text' class='form-control' id='floatingInput3' placeholder='Topic' name='topic' required>
@@ -133,8 +161,8 @@
 
         if($res_user) {
             if($userType == 'Admin') {
-                $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `address`, `property_type`, `startDate`, `endDate`, `description`, `image`, `buy_lease`) 
-                VALUES ('$_POST[companyName]','$_POST[businessType]','$_POST[address]','$_POST[property_type]','$_POST[stdate]', '$_POST[endate]', '$_POST[description]','$name', '$_POST[buyLease]')";
+                $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `address`, `city`, `state`, `zipcode`, `property_type`, `startDate`, `endDate`, `description`, `image`, `buy_lease`) 
+                VALUES ('$_POST[companyName]','$_POST[businessType]','$_POST[address]','$_POST[city]','$_POST[state]','$_POST[zipcode]','$_POST[property_type]','$_POST[stdate]', '$_POST[endate]', '$_POST[description]','$name', '$_POST[buyLease]')";
                 $res = mysqli_query($con, $sql);
 
                 if($res == 1) {
@@ -148,8 +176,8 @@
                 }
             }
             else {
-                $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `address`, `property_type`, `startDate`, `endDate`, `description`, `image`, `buy_lease`) 
-                VALUES ('$company_name','$business_type','$_POST[address]','$_POST[property_type]','$_POST[stdate]', '$_POST[endate]', '$_POST[description]','$name', '$_POST[buyLease]')";
+                $sql = "INSERT INTO `client_data`(`company_name`, `business_type`, `address`, `city`, `state`, `zipcode`, `property_type`, `startDate`, `endDate`, `description`, `image`, `buy_lease`) 
+                VALUES ('$company_name','$business_type','$_POST[address]','$_POST[city]','$_POST[state]','$_POST[zipcode]','$_POST[property_type]','$_POST[stdate]', '$_POST[endate]', '$_POST[description]','$name', '$_POST[buyLease]')";
                 $res = mysqli_query($con, $sql);
 
                 if($res == 1) {

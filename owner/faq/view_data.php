@@ -12,7 +12,7 @@
 
         <!-- <div class="count text-center">00</div> -->
 
-        <?php // include "./includes/cookies.js.php"?>
+        <?php include "./includes/cookies.js.php"?>
 
         <!-- DataTable Plugin Script -->
         <script>

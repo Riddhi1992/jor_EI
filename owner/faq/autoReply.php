@@ -51,7 +51,7 @@
             $mail->Host       = 'p3plzcpnl447271.prod.phx3.secureserver.net';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'example@realtor.drhologramsimulation.com';                     //SMTP username
-            $mail->Password   = 'Example';                               //SMTP password
+            $mail->Password   = 'example';                               //SMTP password
             $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         

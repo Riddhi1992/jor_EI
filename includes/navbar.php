@@ -43,6 +43,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active text-white" aria-current="page" href="index.php"><span>Home <i class="fas fa-home"></i></span></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" aria-current="page" href="demo.php"><span>Demo <i class="fas fa-play"></i></span></a>
+                            </li>
                             <li class="nav-item navHide">
                                 <!-- <a class="nav-link" href="#">Home</a> -->
                                 <a class='nav-link text-white ' data-bs-toggle='modal' href='#exampleModalToggle'>Login</a>

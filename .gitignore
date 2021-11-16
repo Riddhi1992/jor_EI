@@ -2,3 +2,7 @@ backup
 CSS
 js
 user
+nodedemo.js
+node_modules
+package-lock.json
+package.json

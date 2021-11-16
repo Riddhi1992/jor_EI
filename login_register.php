@@ -22,12 +22,12 @@
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = 'example@gmail.com';                     //SMTP username
-            $mail->Password   = 'example';                               //SMTP password
+            $mail->Password   = 'example!@#';                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom('example@gmail.com', 'example');  // email and name
+            $mail->setFrom('example@gmail.com', 'example');
             $mail->addAddress($email);               //Name is optional
 
             // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
@@ -72,9 +72,9 @@
                             // if password matched
                             $_SESSION['logged_in']=true;
                             $_SESSION['username']=$result_fetch['user_name'];
-                            // if($result_fetch['user_type']=="User") {
-                            //     header("location: ./user/user.php");
-                            // }
+                            if($result_fetch['user_type']=="User") {
+                                header("location: ./user/user.php");
+                            }
                             if ($result_fetch['user_type']=="Owner") {
                                 // Online Offline
                                 $_SESSION['UID'] = $result_fetch['id'];
@@ -185,6 +185,8 @@
                     $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `verification_code`, `is_verified`, `resettoken`, `resettokenexpire`) VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$password','$_POST[selection1]','$_POST[useradmin]','$v_code', '0', NULL, NULL)";    
                 }
 
+                // $query = "INSERT INTO `registered_users`(`first_name`, `last_name`, `company_name`, `user_name`, `email`, `password`, `business_type`, `user_type`, `verification_code`, `is_verified`, `resettoken`, `resettokenexpire`) VALUES ('$_POST[firstname]','$_POST[lastname]','$_POST[companyname]','$_POST[user_name]','$_POST[email]','$password','$_POST[selection]','$_POST[useradmin]','$v_code', '0', NULL, NULL)";
+
                 if(mysqli_query($con, $query) && sendMail($_POST['email'], $v_code)) {
                     // if data inserted successfully
                     echo"
@@ -218,7 +220,6 @@
 ?>
 
 <?php 
-    session_start();
     $email = mysqli_real_escape_string($con, $_POST['email_username']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
 
@@ -230,6 +231,7 @@
         $row = mysqli_fetch_assoc($result);
         // if ($row['status']==1) {
             $_SESSION['IS_LOGIN'] = 'yes';
+            // echo "";
             $arr = array('status'=>'success');
         // }
         // else {

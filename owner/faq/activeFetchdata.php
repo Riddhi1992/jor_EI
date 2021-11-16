@@ -22,7 +22,7 @@
 
 <?php         
 
-    $sql = "SELECT `id`, `company_name`, `user_name` FROM `registered_users` WHERE `user_name`='$_SESSION[username]' ";
+    $sql = "SELECT * FROM `registered_users` WHERE `user_name`='$_SESSION[username]' ";
     $res = mysqli_query($con, $sql);
     $row_data = mysqli_fetch_array($res);
 
@@ -38,6 +38,8 @@
     if($query_run) {
         while($row = mysqli_fetch_array($query_run)) {
             if($row_data['company_name'] == $row['company_name']) {
+                $firstname = $row_data['first_name'];
+                $lastname = $row_data['last_name'];
                 $image = $row['image'];
                 $status = $row['status'];
                 // $public_private = $row['public_private'];
@@ -65,11 +67,11 @@
                                 <a href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]' class='p-3'>
                                     <img src='../images/$image' class='card-img-top shadow' style='height: 200px;' alt='...'>
                                 </a>    
-                                <div class=card-body m-3'>
-                                    <a class='h4' href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]'>$row[address]</a>&nbsp;
+                                <div class='card-body m-3'>
+                                    <a class='h4' href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]'>$row[address]<br> $row[city], $row[state] - $row[zipcode]</a>&nbsp;
                                     <h5>$row[property_type]</h5>
                                     <p class='card-text'>$row[description]</p>
-                                    <p>Created By: <span class='text-primary'>$row[company_name]</span></p>
+                                    <p>Created By: <span class='text-primary'>$firstname $lastname - $row[company_name]</span></p>
                                     <p>Created on: <span class='text-primary'>$row[date_inserted]</span></p>
                                     <button class='btn btn-primary'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]'>Edit <i class='far fa-edit'></i></a></button>&nbsp;
                                     <button class='btn btn-primary'><a class='text-light text-decoration-none' href='#'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;

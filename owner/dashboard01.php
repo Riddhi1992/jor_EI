@@ -87,7 +87,15 @@
                         title: 'Company Performance',
                         subtitle: 'No. of times User visited the Topic',
                     },
-                    bars: 'vertical',
+                    bars: 'horizontal',
+                    explorer: {
+                        axis: 'vertical',
+                    },
+                    hAxis: {
+                        direction:-1,
+                        slantedText:true,
+                        slantedTextAngle:45, // here you can even use 180
+                    },
                     chartArea: {
                         // color: 'red'
                     }

@@ -82,7 +82,7 @@
                         title: 'Company Performance',
                         subtitle: 'No. of times User visited the Topic',
                     },
-                    bars: 'vertical',
+                    bars: 'horizontal',
                     chartArea: {
                         // color: 'red'
                     }

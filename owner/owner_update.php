@@ -22,6 +22,8 @@
             $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$companyname',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='$selection1',`user_type`='$useradmin' WHERE `id`='$user_id'";
         }
 
+        // $query = "UPDATE `registered_users` SET `first_name`='$firstname',`last_name`='$lastname',`company_name`='$companyname',`user_name`='$user_name',`email`='$email',`password`='$password',`business_type`='$selection',`user_type`='$useradmin' WHERE `id`='$user_id'";
+
         $result = $con->query($query);
 
         if($result == TRUE) {
