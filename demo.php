@@ -25,6 +25,14 @@
 
             if($query_run) {
                 while($row = mysqli_fetch_array($query_run)) {
+                    $company = $row['company_name'];
+
+                    $com_sql = "SELECT * FROM `registered_users` WHERE `company_name` = '$company'";
+                    $com_res = mysqli_query($con, $com_sql);
+                    $com_row = mysqli_fetch_array($com_res);
+                    $firstname = $com_row['first_name'];
+                    $lastname = $com_row['last_name'];
+                    
                     // if($row_data['company_name'] == $row['company_name']) {
                         $image = $row['image'];
                         $status = $row['status'];
@@ -41,7 +49,7 @@
                                             <a class='h4' href='#'>$row[address]<br> $row[city], $row[state] - $row[zipcode]</a>&nbsp;
                                             <h5>$row[property_type]</h5>
                                             <p class='card-text'>$row[description]</p>
-                                            <p>Created By: <span class='text-primary'>$row[company_name]</span></p>
+                                            <p>Created By: <span class='text-primary'>$firstname $lastname - $row[company_name]</span></p>
                                         </div>
                                     </div>
                                 </div>
