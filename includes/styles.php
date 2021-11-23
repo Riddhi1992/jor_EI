@@ -82,8 +82,26 @@
     .navbar-toggler {
         border: #fff 1px solid;
     }
-    #instruct_btn {
-        padding-left: 150px;
+
+    #loginBtn {
+        background-color: #50d3c6;
+        color: #fff;
+        border: #50d3c6 2px solid;
+        border-radius: 3px;
+    }
+
+    #footImage {
+        padding: 0px;
+        position: absolute;
+        left: 0px;
+        height: 150px;
+        z-index: -1;
+    }
+
+    footer {
+        margin-top: 200px;
+        color: #50d3c6;
+        font-size: 1.1rem;
     }
 
     /* Media queries */
@@ -141,27 +159,6 @@
         }
     }
 
-    #loginBtn {
-        background-color: #50d3c6;
-        color: #fff;
-        border: #50d3c6 2px solid;
-        border-radius: 3px;
-    }
-
-    #footImage {
-        padding: 0px;
-        position: absolute;
-        left: 0px;
-        height: 150px;
-        z-index: -1;
-    }
-
-    footer {
-        margin-top: 200px;
-        color: #50d3c6;
-        font-size: 1.1rem;
-    }
-
     @media only screen and (max-width: 618px) {
         footer {
             font-size: 0.8rem;
@@ -179,8 +176,44 @@
             display: block;
         }
         #indexLoginForm {
-            width: 75%;
+            width: 100%;
+            padding: 2em;
+        }
+    }
+    @media only screen and (min-width: 891px) {
+        #indexLoginForm {
+            width: 50%;
+            padding: 4em;
         }
     }
 
+    @media only screen and (max-width: 991px) {
+        #faqForm {
+            width: 100%;
+            padding: 1em;
+        }
+    }
+    @media only screen and (min-width: 992px) {
+        #faqForm {
+            width: 100%;
+            padding: 4em;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        #cityStateCode {
+            display: none;
+        }
+    }
+    @media only screen and (min-width: 768px) {
+        #cityStateCode01 {
+            display: none;
+        }
+    }
+    
+    @media only screen and (min-width: 768px) {
+        #cardWidth {
+            width: 20rem;
+        }
+    }
 </style>

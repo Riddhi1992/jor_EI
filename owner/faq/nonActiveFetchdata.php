@@ -62,7 +62,7 @@
                 if($status == 0 && $isDeleted == 0) {
                     echo "
                         <div class='col gap-3 m-3'>
-                            <div class='card h-100 shadow' id='card' style='width: 20rem;'>
+                            <div class='card h-100 shadow' id='cardWidth'>
                                 <a href='' class='p-3'>
                                     <img src='../images/$image' class='card-img-top shadow' style='height: 200px;' alt='...'>
                                 </a>    
@@ -72,9 +72,9 @@
                                     <p class='card-text'>$row[description]</p>
                                     <p>Created By: <span class='text-primary'>$firstname $lastname - $row[company_name]</span></p>
                                     <p>Created on: <span class='text-primary'>$row[date_inserted]</span></p>
-                                    <button class='btn btn-primary'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]'>Edit <i class='far fa-edit'></i></a></button>&nbsp;
-                                    <button class='btn btn-primary'><a class='text-light text-decoration-none' href='#'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
-                                    <button class='btn $class'>$strstatus</button>
+                                    <button class='btn btn-primary mt-2'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]'>Edit <i class='far fa-edit'></i></a></button>&nbsp;
+                                    <button class='btn btn-primary mt-2'><a class='text-light text-decoration-none' href='#'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
+                                    <button class='btn $class mt-2'>$strstatus</button>
                                     <a class='btn btn-danger mb-1 mt-2' data-bs-toggle='modal' href='#modal' role='button'>Delete <i class='far fa-trash-alt'></i></a>
                                     <p class='mt-2'>User visited # <span class='badge bg-primary'>$row[visitor_counter]</span></p>
                                 </div>

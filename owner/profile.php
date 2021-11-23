@@ -35,8 +35,8 @@
                     
                     if($res) {
                         echo "
-                            <div class='container mb-5 d-flex justify-content-center'>
-                                <div class='shadow mt-5 p-5 w-50'>
+                            <div class='container d-flex justify-content-center'>
+                                <div id='indexLoginForm' class='shadow mt-5'>
                                     <h3 class='text-center mb-5'>Profile Page</h3> 
                                     <form method='POST' action=''>
                                         <div class='form-floating mb-3 visually-hidden'>

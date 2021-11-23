@@ -63,7 +63,7 @@
                 if($status == 1) {
                     echo "
                         <div class='col gap-3 m-3'>
-                            <div class='card h-100 shadow' style='width: 20rem;'>
+                            <div class='card h-100 shadow' id='cardWidth'>
                                 <a href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]' class='p-3'>
                                     <img src='../images/$image' class='card-img-top shadow' style='height: 200px;' alt='...'>
                                 </a>    
@@ -73,10 +73,10 @@
                                     <p class='card-text'>$row[description]</p>
                                     <p>Created By: <span class='text-primary'>$firstname $lastname - $row[company_name]</span></p>
                                     <p>Created on: <span class='text-primary'>$row[date_inserted]</span></p>
-                                    <button class='btn btn-primary'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]'>Edit <i class='far fa-edit'></i></a></button>&nbsp;
-                                    <button class='btn btn-primary'><a class='text-light text-decoration-none' href='#'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
-                                    <button class='btn btn-primary'><a class='text-light text-decoration-none' href='visitor_counter.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
-                                    <button class='btn $class'>$strstatus</button>&nbsp;
+                                    <button class='btn btn-primary mt-2'><a class='text-light text-decoration-none' href='view_data.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter&option=$row[buy_lease]'>Edit <i class='far fa-edit'></i></a></button>&nbsp;
+                                    <button class='btn btn-primary mt-2'><a class='text-light text-decoration-none' href='#'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
+                                    <button class='btn btn-primary mt-2'><a class='text-light text-decoration-none' href='visitor_counter.php?id=$row[id]&address=$row[address]&visCon=$visitor_counter'>Play <i class='far fa-play-circle'></i> </a></button>&nbsp;
+                                    <button class='btn $class mt-2'>$strstatus</button>&nbsp;
                                     <button name='publish' class='btn btn-secondary mt-2'><a class='text-light text-decoration-none' href='publish.php?id=$row[id]&address=$row[address]'>Publish</a></button>&nbsp;
                                     <p class='mt-2'>User visited # <span class='badge bg-primary'>$row[visitor_counter]</span></p>
                                 </div>

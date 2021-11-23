@@ -15,7 +15,7 @@
         <?php include "./includes/loginForm.php" ?>
         <!-- Login Form end -->
         <div class="container d-flex justify-content-center">
-            <div id="indexLoginForm" class='shadow mt-5 p-5 w-50'>
+            <div id="indexLoginForm" class='shadow mt-5'>
                 <h3 class="text-center">LOGIN</h3>
                 <form id="login-form" method="POST" action="login_register.php">
                     <div class="form-floating mb-3">

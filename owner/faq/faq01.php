@@ -15,108 +15,110 @@
 <body>
     <?php include "./includes/navbar.php" ?>
     <div class="mt-5"></div>
-    <div class="container border rounded shadow">
-        <h3 class="text-center m-3">FAQ form</h3>
-        <form method="POST" class="m-5" action="" enctype="multipart/form-data">
-            <div id='first'>
-                <div class='form-floating mb-3 visually-hidden'>
-                    <input type='text' class='form-control' id='input' placeholder='Company Name' name='id'>
-                    <label for='input'>ID</label>
-                </div>
-                <div class="selectmenu form-floating mb-3">
+    <div class="container d-flex justify-content-center">
+        <div id="faqForm" class='shadow mt-5'>
+            <h3 class="text-center m-3">FAQ form</h3>
+            <form method="POST" class="" action="" enctype="multipart/form-data">
+                <div id='first'>
+                    <div class='form-floating mb-3 visually-hidden'>
+                        <input type='text' class='form-control' id='input' placeholder='Company Name' name='id'>
+                        <label for='input'>ID</label>
+                    </div>
+                    <div class="selectmenu form-floating mb-3">
+                            <?php 
+                                if(isset($_GET['option'])){
+                                    $option = $_GET['option'];
+
+                                    if ($option == 'Purchase') {
+                                        $sql = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option'";
+                                        $result = mysqli_query($con, $sql);
+                                        if($result) {
+                                            echo "
+                                                <select class='form-select' aria-label='Floating label select example' id='selection' name='question' onchange='selectOption()' required>
+                                            ";
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "
+                                                    <option value='$row[question]'>$row[question]</option>
+                                                ";
+                                            }
+                                            echo "
+                                                </select>
+                                            ";
+                                        }
+                                    }
+                                    else {
+                                        $sql = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option'";
+                                        $result = mysqli_query($con, $sql);
+                                        if($result) {
+                                            echo "
+                                                <select class='form-select' aria-label='Floating label select example' id='selection' name='question' onchange='selectOption()' required>
+                                            ";
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "
+                                                    <option value='$row[question]'>$row[question]</option>
+                                                ";
+                                            }
+                                            echo "
+                                                </select>
+                                            ";
+                                        }
+                                    }
+                                }
+                            ?>           
+                        <label for="floatingSelect">Question</label>
+                    </div>
+                    <!-- <div class='form-floating mb-3'>
+                        <input type='text' class='form-control' id='floatingInput0' placeholder='Question' name='question' required>
+                        <label for='floatingInput0'>Question</label>
+                    </div> -->
+                    <div class='mb-3'>
+                        <label for='formFile' class='form-label'>Upload your Video here</label>
+                        <input class='form-control' type='file' id='formFile' name='file'>
+                    </div>
+                    <div class='row mb-3 mt-5'>
                         <?php 
-                            if(isset($_GET['option'])){
-                                $option = $_GET['option'];
+                            $query = "SELECT * FROM `registered_users` WHERE `user_name` = '$_SESSION[username]'";
+                            $result = mysqli_query($con, $query);
+                            $row_data = mysqli_fetch_array($result);
 
-                                if ($option == 'Purchase') {
-                                    $sql = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option'";
-                                    $result = mysqli_query($con, $sql);
-                                    if($result) {
-                                        echo "
-                                            <select class='form-select' aria-label='Floating label select example' id='selection' name='question' onchange='selectOption()' required>
-                                        ";
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "
-                                                <option value='$row[question]'>$row[question]</option>
-                                            ";
-                                        }
-                                        echo "
-                                            </select>
-                                        ";
-                                    }
-                                }
-                                else {
-                                    $sql = "SELECT * FROM `option_Selection` WHERE `purchase_lease` = '$option'";
-                                    $result = mysqli_query($con, $sql);
-                                    if($result) {
-                                        echo "
-                                            <select class='form-select' aria-label='Floating label select example' id='selection' name='question' onchange='selectOption()' required>
-                                        ";
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "
-                                                <option value='$row[question]'>$row[question]</option>
-                                            ";
-                                        }
-                                        echo "
-                                            </select>
-                                        ";
-                                    }
-                                }
-                            }
-                        ?>           
-                    <label for="floatingSelect">Question</label>
-                </div>
-                <!-- <div class='form-floating mb-3'>
-                    <input type='text' class='form-control' id='floatingInput0' placeholder='Question' name='question' required>
-                    <label for='floatingInput0'>Question</label>
-                </div> -->
-                <div class='mb-3'>
-                    <label for='formFile' class='form-label'>Upload your Video here</label>
-                    <input class='form-control' type='file' id='formFile' name='file'>
-                </div>
-                <div class='row mb-3 mt-5'>
-                    <?php 
-                        $query = "SELECT * FROM `registered_users` WHERE `user_name` = '$_SESSION[username]'";
-                        $result = mysqli_query($con, $query);
-                        $row_data = mysqli_fetch_array($result);
-
-                        if(isset($_GET['id']) && $_GET['address']) {
-                            echo "
-                                <div class='col'></div>  
-                                <div class='col'></div>  
-                                <div class='col'>
-                                    <button type='submit' class='btn btn-primary w-100' name='update' value='SAVE'>Update</button>
-                                </div>
-                            ";
-                        }
-                        else {
-                            echo "
-                                <div class='col'></div>
-                                <div class='col'>
-                                    <button type='submit' class='btn btn-primary w-100' name='save' value='SAVE'>Save & Add Next</button>
-                                </div>
-                            ";
-                            if($row_data['user_type'] == 'Admin') {
+                            if(isset($_GET['id']) && $_GET['address']) {
                                 echo "
+                                    <div class='col'></div>  
+                                    <div class='col'></div>  
                                     <div class='col'>
-                                        <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='../../admin/activeFetchdata.php'>Save & Finish</a></button>
+                                        <button type='submit' class='btn btn-primary w-100' name='update' value='SAVE'>Update</button>
                                     </div>
                                 ";
                             }
                             else {
                                 echo "
+                                    <div class='col'></div>
                                     <div class='col'>
-                                        <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='activeFetchdata.php'>Save & Finish</a></button>
-                                    </div>            
+                                        <button type='submit' class='btn btn-primary w-100' name='save' value='SAVE'>Save & Add Next</button>
+                                    </div>
                                 ";
+                                if($row_data['user_type'] == 'Admin') {
+                                    echo "
+                                        <div class='col'>
+                                            <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='../../admin/activeFetchdata.php'>Save & Finish</a></button>
+                                        </div>
+                                    ";
+                                }
+                                else {
+                                    echo "
+                                        <div class='col'>
+                                            <button type='submit' class='btn btn-danger w-100' name='save_finish' value='Save & Finish'><a class='text-light text-decoration-none' href='activeFetchdata.php'>Save & Finish</a></button>
+                                        </div>            
+                                    ";
+                                }
+                                    
                             }
-                                
-                        }
-                    ?>
-                    
+                        ?>
+                        
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     <?php include "./includes/footer.php" ?>
     <script>

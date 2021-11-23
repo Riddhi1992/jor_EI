@@ -9,8 +9,8 @@
 
     <?php include "./includes/navbar.php" ?>
 
-        <div class="container mb-5 d-flex justify-content-center">
-            <div class="shadow mt-5 p-5 w-50">
+        <div class="container d-flex justify-content-center">
+            <div id="indexLoginForm" class='shadow mt-5'>
                 <h3 class="text-center mb-5">Contact Admin</h3>
                 <form class="" method="POST" enctype="multipart/form-data">
                     <div class="form-floating mb-3">

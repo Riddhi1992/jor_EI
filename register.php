@@ -14,9 +14,9 @@
         <!-- Login Modal end -->
 
         <!-- Register Modal start -->        
-                <h3 class="modal-title text-center mt-3" id="exampleModalToggleLabel">USER REGISTER FORM</h3>
-                <div class="border border-secondary rounded m-5">
-                    <div class="modal-body">
+                <div class="container d-flex justify-content-center">
+                    <div id="indexLoginForm" class="shadow mt-5">
+                        <h3 class="text-center mt-3" id="exampleModalToggleLabel">USER REGISTER FORM</h3>
                         <form class="" method="POST" action="login_register.php">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingInput0" placeholder="First Name" name="firstname" required>
